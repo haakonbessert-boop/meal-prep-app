@@ -1,5 +1,5 @@
 {
- "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion aus ernaehrungsplan-4-wochen-rotation.md. Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
+ "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden. Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
  "ziele": {
   "kcal_tag": 2000,
   "protein_tag": 160,
@@ -13,22 +13,22 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 735,
-    "protein": 84,
+    "kcal": 740,
+    "protein": 87,
     "fett": 25
    },
    "zutaten": [
     [
      "gurke",
-     300
+     320
     ],
     [
      "tomate",
-     150
+     120
     ],
     [
      "rote_zwiebel",
-     30
+     32
     ],
     [
      "haehnchen",
@@ -36,7 +36,7 @@
     ],
     [
      "kichererbsen",
-     120
+     96
     ],
     [
      "feta",
@@ -44,7 +44,7 @@
     ],
     [
      "magerquark",
-     150
+     200
     ],
     [
      "oel",
@@ -52,7 +52,7 @@
     ],
     [
      "zitrone",
-     0.25
+     0.2
     ],
     [
      "knoblauch",
@@ -76,9 +76,9 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1170,
-    "protein": 83,
-    "fett": 54
+    "kcal": 1130,
+    "protein": 84,
+    "fett": 49
    },
    "zutaten": [
     [
@@ -87,7 +87,7 @@
     ],
     [
      "zwiebel",
-     33
+     40
     ],
     [
      "kartoffeln",
@@ -139,18 +139,18 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 840,
-    "protein": 87,
-    "fett": 32
+    "kcal": 820,
+    "protein": 84,
+    "fett": 33
    },
    "zutaten": [
     [
      "eisberg",
-     150
+     200
     ],
     [
      "gurke",
-     200
+     240
     ],
     [
      "tomate",
@@ -166,11 +166,11 @@
     ],
     [
      "kidneybohnen",
-     120
+     96
     ],
     [
      "mais",
-     60
+     57
     ],
     [
      "joghurt",
@@ -193,7 +193,7 @@
      0
     ]
    ],
-   "hinweis": "Dressing: Joghurt, Quark, 2 TL Senf, 2 TL Olivenöl, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern.",
+   "hinweis": "Dressing: Joghurt, Quark, 2 TL Senf, 2 TL Olivenöl, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei.",
    "kurz": "Thunfisch-Ei-Salat"
   },
   {
@@ -202,9 +202,9 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1015,
-    "protein": 88,
-    "fett": 28
+    "kcal": 1025,
+    "protein": 86,
+    "fett": 30
    },
    "zutaten": [
     [
@@ -217,11 +217,11 @@
     ],
     [
      "zwiebel",
-     50
+     60
     ],
     [
      "kokosmilch",
-     70
+     80
     ],
     [
      "passierte_tomaten",
@@ -244,7 +244,7 @@
      0
     ]
    ],
-   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, Zwiebel, Curry, 70 ml Kokosmilch + 80 ml Wasser, Tomaten, TK-Gemüse 10 min köcheln. Reis parallel kochen. Die Kokosmilch-Dose hält offen 3–4 Tage, Rest einfrieren.",
+   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, Zwiebel, Curry, 80 ml Kokosmilch + 80 ml Wasser, Tomaten, TK-Gemüse 10 min köcheln. Reis parallel kochen. Die Kokosmilch-Dose reicht genau für 5 Abende: Montag öffnen, 160 ml für Do und Fr einfrieren.",
    "kurz": "Curry"
   },
   {
@@ -253,34 +253,34 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 690,
-    "protein": 83,
-    "fett": 23
+    "kcal": 625,
+    "protein": 69,
+    "fett": 21
    },
    "zutaten": [
     [
      "gurke",
-     300
+     320
     ],
     [
      "karotte",
-     80
+     120
     ],
     [
      "chinakohl",
-     100
+     160
     ],
     [
      "fruehlingszwiebel",
-     0.25
+     0.2
     ],
     [
      "haehnchen",
-     250
+     200
     ],
     [
      "tk_edamame",
-     120
+     100
     ],
     [
      "erdnussmus",
@@ -292,7 +292,7 @@
     ],
     [
      "limette",
-     0.5
+     0.4
     ],
     [
      "honig",
@@ -316,14 +316,14 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1210,
-    "protein": 79,
-    "fett": 45
+    "kcal": 1370,
+    "protein": 99,
+    "fett": 47
    },
    "zutaten": [
     [
      "hack",
-     175
+     200
     ],
     [
      "rote_linsen",
@@ -331,7 +331,7 @@
     ],
     [
      "passierte_tomaten",
-     250
+     300
     ],
     [
      "zwiebel",
@@ -339,7 +339,7 @@
     ],
     [
      "karotte",
-     50
+     80
     ],
     [
      "tomatenmark",
@@ -347,7 +347,7 @@
     ],
     [
      "magerquark",
-     100
+     200
     ],
     [
      "vollkornnudeln",
@@ -375,38 +375,38 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 790,
-    "protein": 86,
-    "fett": 27
+    "kcal": 880,
+    "protein": 95,
+    "fett": 32
    },
    "zutaten": [
     [
      "roemersalat",
-     150
+     160
     ],
     [
      "gurke",
-     150
+     190
     ],
     [
      "paprika",
-     100
+     90
     ],
     [
      "haehnchen",
-     180
+     200
     ],
     [
      "oel",
-     10
+     20
     ],
     [
      "kidneybohnen",
-     120
+     96
     ],
     [
      "mais",
-     60
+     57
     ],
     [
      "reibekaese",
@@ -414,22 +414,22 @@
     ],
     [
      "magerquark",
-     150
+     200
     ],
     [
-     "passierte_tomaten",
-     30
+     "tomate",
+     100
     ],
     [
      "limette",
-     0.25
+     0.2
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Dressing: Quark, passierte Tomaten oder Salsa, Limette, Kreuzkümmel, Salz, Chili.",
+   "hinweis": "Dressing: Quark, Limette, Kreuzkümmel, Salz, Chili. Die Tomate kommt gewürfelt in den Salat.",
    "kurz": "Mexiko-Salat"
   },
   {
@@ -438,14 +438,14 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1035,
-    "protein": 92,
-    "fett": 30
+    "kcal": 1105,
+    "protein": 98,
+    "fett": 32
    },
    "zutaten": [
     [
      "pute",
-     230
+     200
     ],
     [
      "oel",
@@ -453,11 +453,11 @@
     ],
     [
      "paprika",
-     100
+     90
     ],
     [
      "zwiebel",
-     50
+     60
     ],
     [
      "reis",
@@ -465,15 +465,15 @@
     ],
     [
      "feta",
-     50
+     80
     ],
     [
      "magerquark",
-     150
+     200
     ],
     [
      "joghurt",
-     50
+     100
     ],
     [
      "gurke",
@@ -488,7 +488,7 @@
      0
     ]
    ],
-   "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki alle 2–3 Tage frisch anrühren.",
+   "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki aus Quark, Joghurt, Gurke und Knoblauch alle 2–3 Tage frisch anrühren.",
    "kurz": "Gyros"
   }
  ],
@@ -526,7 +526,7 @@
    "abend": "abend-bolognese",
    "prep_minuten": 35,
    "prep": [
-    "Hähnchen (1,25 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.",
+    "Hähnchen (1 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.",
     "Erdnuss-Dressing für die ganze Woche in einem Glas anrühren, Karotten raspeln, Edamame auftauen.",
     "Abfüllen: 5 × Hähnchen + Edamame, die Portionen für Do und Fr einfrieren.",
     "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
@@ -539,7 +539,7 @@
    "abend": "abend-gyros",
    "prep_minuten": 30,
    "prep": [
-    "Hähnchen (900 g) mit Taco-Gewürz in 1 EL Öl braten.",
+    "Hähnchen (1 kg) mit Taco-Gewürz in 1 EL Öl braten.",
     "Bohnen und Mais abtropfen.",
     "Abfüllen: 5 × Hähnchen, die Portionen für Do und Fr einfrieren.",
     "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",

@@ -197,7 +197,8 @@ function einkauf(){
     if (p.einheit === "g" && p.menge === 1) qty = `${fmt(Math.round(m / 10) * 10)} g`;
     else {
       const n = Math.max(1, Math.ceil(m / p.menge - 0.08));
-      qty = p.einheit.startsWith("×") ? `${n} ${p.einheit}` : `${n} ${p.einheit}`;
+      const PL = { "Dose": "Dosen", "Glas": "Gläser", "Knolle": "Knollen", "Schale 500 g": "Schalen à 500 g", "Netz 2 kg": "Netze à 2 kg", "Beutel 1 kg": "Beutel à 1 kg" };
+      qty = `${n} ${n > 1 && PL[p.einheit] ? PL[p.einheit] : p.einheit}`;
       if (p.menge >= 50) need = `${fmt(Math.round(m))} g gebraucht`;
     }
     (out[z.abteilung] ||= []).push({ k, name: z.name, qty, need, tausch: z.tauschbar });
@@ -257,7 +258,7 @@ function viewEinkauf(){
     h += `</div>`;
   }
   h += `<details><summary>Vorrat prüfen (${vorrat.length})</summary><ul class="plain">${vorrat.map(v => `<li>${v}</li>`).join("")}</ul></details>
-  <p class="note">Reste aus der Vorwoche (z. B. Reibekäse) einfach abhaken.</p></div>`;
+  <p class="note">Die Mengen gehen in ganzen Packungen auf: Frisches ist bis Freitag aufgebraucht. Übrig bleiben dürfen nur haltbare Sachen wie TK-Gemüse, Gewürzgurken oder Parmesan.</p></div>`;
   return h;
 }
 
