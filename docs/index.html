@@ -211,7 +211,7 @@ function einkauf(){
     let qty, need = "";
     if (p.einheit === "g" && p.menge === 1) qty = `${fmt(Math.round(m / 10) * 10)} g`;
     else {
-      const n = Math.max(1, Math.ceil(m / p.menge - 0.05));
+      const n = Math.max(1, Math.ceil(m / p.menge - 0.08));
       qty = p.einheit.startsWith("×") ? `${n} ${p.einheit}` : `${n} ${p.einheit}`;
       if (p.menge >= 50) need = `${fmt(Math.round(m))} g gebraucht`;
     }
