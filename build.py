@@ -3,9 +3,9 @@
 #   docs/       -> fertige PWA für GitHub Pages (Manifest, Offline, Icons)
 import json, pathlib, shutil
 root = pathlib.Path(__file__).parent
-VERSION = "0.6"
+VERSION = "0.6.1"
 
-t = (root/"src/index.template.html").read_text()
+t = (root/"src/index.template.html").read_text().replace("__APPVERSION__", VERSION)
 for name, f in [("REZEPTE", "rezepte.json"), ("ZUTATEN", "zutaten.json")]:
     t = t.replace(f"/*{name}*/", json.dumps(json.loads((root/"data"/f).read_text()), ensure_ascii=False))
 (root/"index.html").write_text(t)

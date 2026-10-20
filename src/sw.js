@@ -12,7 +12,8 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   // Erst Netz, damit Updates sofort ankommen; ohne Netz aus dem Speicher.
   e.respondWith(
-    fetch(e.request).then(res => {
+    // Eigene Dateien immer beim Server nachfragen (kein HTTP-Cache), sonst hängen Updates bis zu 10 min.
+    fetch(e.request, new URL(e.request.url).origin === location.origin ? { cache: "no-cache" } : {}).then(res => {
       const copy = res.clone();
       caches.open(CACHE).then(c => c.put(e.request, copy));
       return res;

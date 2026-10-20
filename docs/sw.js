@@ -1,5 +1,5 @@
 // Offline-Modus: App-Dateien beim Installieren speichern, Schriften beim ersten Laden.
-const CACHE = "meal-prep-v0.6";
+const CACHE = "meal-prep-v0.6.1";
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
@@ -12,7 +12,8 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   // Erst Netz, damit Updates sofort ankommen; ohne Netz aus dem Speicher.
   e.respondWith(
-    fetch(e.request).then(res => {
+    // Eigene Dateien immer beim Server nachfragen (kein HTTP-Cache), sonst hängen Updates bis zu 10 min.
+    fetch(e.request, new URL(e.request.url).origin === location.origin ? { cache: "no-cache" } : {}).then(res => {
       const copy = res.clone();
       caches.open(CACHE).then(c => c.put(e.request, copy));
       return res;
