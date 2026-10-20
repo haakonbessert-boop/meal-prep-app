@@ -1,5 +1,5 @@
 // Offline-Modus: App-Dateien beim Installieren speichern, Schriften beim ersten Laden.
-const CACHE = "meal-prep-v0.5";
+const CACHE = "meal-prep-v0.6";
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {

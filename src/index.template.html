@@ -148,7 +148,7 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
   <div class="d-label">Eigene Kombination</div>
   <button class="d-item" data-w="frei" id="dFree"><b>Frei wählen</b><span>Salat und Abendessen selbst kombinieren</span></button>
   <div class="free" id="freePick" hidden>
-    <label for="selSalat">Salat (15 Uhr, 4 Portionen)<select id="selSalat"></select></label>
+    <label for="selSalat">Salat (15 Uhr, 5 Portionen)<select id="selSalat"></select></label>
     <label for="selAbend">Abendessen (5 Portionen)<select id="selAbend"></select></label>
   </div>
 </aside>
@@ -184,7 +184,7 @@ const key = () => state.wahl === "frei" ? `frei:${state.salat}:${state.abend}` :
 function einkauf(){
   const { salat, abend } = auswahl();
   const tot = {};
-  for (const r of [salat, abend, REZ.montagsbox])
+  for (const r of [salat, abend])
     for (const [k, m] of r.zutaten) tot[k] = (tot[k] || 0) + m * r.portionen;
   const out = {}, vorrat = [];
   for (const [k, m] of Object.entries(tot)){
@@ -219,28 +219,25 @@ function mealRow(label, r, when){
 }
 
 function viewWoche(){
-  const { salat, abend } = auswahl(), box = REZ.montagsbox, z = REZ.ziele;
-  const mo = { kcal: box.makros.kcal + abend.makros.kcal, protein: box.makros.protein + abend.makros.protein };
+  const { salat, abend } = auswahl(), z = REZ.ziele;
   const di = { kcal: salat.makros.kcal + abend.makros.kcal, protein: salat.makros.protein + abend.makros.protein };
   const st = (v, goal, isP) => isP
     ? (v >= goal ? `<span class="st">Ziel erreicht</span>` : `<span class="st warn">${goal - v} g fehlen</span>`)
     : (v <= goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
-  const rest = z.kcal_woche - mo.kcal - 4 * di.kcal;
+  const rest = z.kcal_woche - 5 * di.kcal;
   return `
     <div><h1 class="hello">Diese Woche: <em>${salat.kurz}</em> und <em>${abend.kurz}</em>.</h1>
-    <p class="lead">Einkauf und Prep am Montag. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
+    <p class="lead">Einkauf: ${REZ.rhythmus.einkauf}, Prep: ${REZ.rhythmus.prep}. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
     <section class="panel">
-      ${mealRow("Salat", salat, "Di–Fr, 15 Uhr")}
+      ${mealRow("Salat", salat, "Mo–Fr, 15 Uhr")}
       ${mealRow("Abendessen", abend, "Mo–Fr")}
-      ${mealRow("Montags-Box", box, "Mo, 15 Uhr")}
     </section>
     <section>
       <h3 class="h-sec">Tagessumme gegen dein Ziel</h3>
       <div class="panel" style="overflow-x:auto"><table>
         <thead><tr><th>Tag</th><th>kcal</th><th>Protein</th></tr></thead>
         <tbody>
-          <tr><td>Montag</td><td>${fmt(mo.kcal)}<br>${st(mo.kcal, z.kcal_tag)}</td><td>${mo.protein} g<br>${st(mo.protein, z.protein_tag, true)}</td></tr>
-          <tr><td>Di–Fr</td><td>${fmt(di.kcal)}<br>${st(di.kcal, z.kcal_tag)}</td><td>${di.protein} g<br>${st(di.protein, z.protein_tag, true)}</td></tr>
+          <tr><td>Mo–Fr</td><td>${fmt(di.kcal)}<br>${st(di.kcal, z.kcal_tag)}</td><td>${di.protein} g<br>${st(di.protein, z.protein_tag, true)}</td></tr>
         </tbody></table></div>
     </section>
     <p class="note">Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende, an dem du frisch kochst, bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(rest)} kcal.</p>`;
@@ -258,16 +255,16 @@ function viewEinkauf(){
     h += `</div>`;
   }
   h += `<details><summary>Vorrat prüfen (${vorrat.length})</summary><ul class="plain">${vorrat.map(v => `<li>${v}</li>`).join("")}</ul></details>
-  <p class="note">Enthält die Zutaten für die Montags-Box der nächsten Woche. Reste aus der Vorwoche (z. B. Reibekäse) einfach abhaken.</p></div>`;
+  <p class="note">Reste aus der Vorwoche (z. B. Reibekäse) einfach abhaken.</p></div>`;
   return h;
 }
 
 function viewPrep(){
   const { salat, abend, woche } = auswahl();
-  const steps = woche ? woche.prep : [`${abend.name}: 5 Portionen kochen. ${abend.hinweis}`, `${salat.name}: Protein und haltbare Teile für 4 Portionen vorbereiten. ${salat.hinweis}`];
+  const steps = woche ? woche.prep : [`${abend.name}: 5 Portionen kochen. ${abend.hinweis}`, `${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`];
   const checks = store.get("prep:" + key(), {});
   return `<div class="section">
-    <div class="bar"><h3>Montagabend${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
+    <div class="bar"><h3>${REZ.rhythmus.prep}${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
     <div class="group">${steps.map((s, i) => `<label class="item ${checks[i] ? "done" : ""}"><input type="checkbox" id="p-${i}" data-p="${i}" ${checks[i] ? "checked" : ""}><span class="stepno">${i + 1}</span><span class="what">${s}</span></label>`).join("")}</div>
     ${woche ? "" : `<p class="note">Für freie Kombinationen gibt es noch keinen fertigen Ablauf, nur die Hinweise aus den Rezepten.</p>`}
     <details open><summary>Salat frisch halten</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
@@ -286,7 +283,7 @@ function ingList(r){
   return `<div class="ing"><span class="h">Zutat</span><span class="h">Portion</span><span class="h">× ${r.portionen}</span>${rows}</div>`;
 }
 function viewRezepte(){
-  const all = [...REZ.rezepte, REZ.montagsbox];
+  const all = REZ.rezepte;
   return `<div class="section">${all.map(r => `<details><summary>${r.name}</summary><div class="section">${chips(r.makros)}${ingList(r)}<p class="note">${r.hinweis}</p></div></details>`).join("")}</div>`;
 }
 
