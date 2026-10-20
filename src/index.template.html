@@ -149,7 +149,7 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
   <button class="d-item" data-w="frei" id="dFree"><b>Frei wählen</b><span>Salat und Abendessen selbst kombinieren</span></button>
   <div class="free" id="freePick" hidden>
     <label for="selSalat">Salat (15 Uhr, 4 Portionen)<select id="selSalat"></select></label>
-    <label for="selAbend">Abendessen (6 Portionen)<select id="selAbend"></select></label>
+    <label for="selAbend">Abendessen (5 Portionen)<select id="selAbend"></select></label>
   </div>
 </aside>
 
@@ -231,7 +231,7 @@ function viewWoche(){
     <p class="lead">Einkauf und Prep am Montag. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
     <section class="panel">
       ${mealRow("Salat", salat, "Di–Fr, 15 Uhr")}
-      ${mealRow("Abendessen", abend, "Mo–Fr und So")}
+      ${mealRow("Abendessen", abend, "Mo–Fr")}
       ${mealRow("Montags-Box", box, "Mo, 15 Uhr")}
     </section>
     <section>
@@ -243,7 +243,7 @@ function viewWoche(){
           <tr><td>Di–Fr</td><td>${fmt(di.kcal)}<br>${st(di.kcal, z.kcal_tag)}</td><td>${di.protein} g<br>${st(di.protein, z.protein_tag, true)}</td></tr>
         </tbody></table></div>
     </section>
-    <p class="note">Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(rest)} kcal, die Sonntagsportion Abendessen ist da schon drin.</p>`;
+    <p class="note">Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende, an dem du frisch kochst, bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(rest)} kcal.</p>`;
 }
 
 function viewEinkauf(){
@@ -264,7 +264,7 @@ function viewEinkauf(){
 
 function viewPrep(){
   const { salat, abend, woche } = auswahl();
-  const steps = woche ? woche.prep : [`${abend.name}: 6 Portionen kochen. ${abend.hinweis}`, `${salat.name}: Protein und haltbare Teile für 4 Portionen vorbereiten. ${salat.hinweis}`];
+  const steps = woche ? woche.prep : [`${abend.name}: 5 Portionen kochen. ${abend.hinweis}`, `${salat.name}: Protein und haltbare Teile für 4 Portionen vorbereiten. ${salat.hinweis}`];
   const checks = store.get("prep:" + key(), {});
   return `<div class="section">
     <div class="bar"><h3>Montagabend${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
@@ -272,7 +272,7 @@ function viewPrep(){
     ${woche ? "" : `<p class="note">Für freie Kombinationen gibt es noch keinen fertigen Ablauf, nur die Hinweise aus den Rezepten.</p>`}
     <details open><summary>Salat frisch halten</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
     <details><summary>Was wann aus dem Gefrierfach</summary><ul class="plain">
-      <li>Abendessen: Di und Mi aus dem Kühlschrank, Do, Fr und So einfrieren.</li>
+      <li>Abendessen: Di und Mi aus dem Kühlschrank, Do und Fr einfrieren.</li>
       <li>Salat-Protein: Do und Fr einfrieren.</li>
       <li>Immer am Vorabend in den Kühlschrank legen.</li></ul></details>
   </div>`;
