@@ -229,10 +229,10 @@ function viewWoche(){
   const rest = z.kcal_woche - 5 * di.kcal;
   return `
     <div><h1 class="hello">Diese Woche: <em>${salat.kurz}</em> und <em>${abend.kurz}</em>.</h1>
-    <p class="lead">Einkauf: ${REZ.rhythmus.einkauf}, Prep: ${REZ.rhythmus.prep}. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
+    <p class="lead">Montagmorgen Einkauf und Salat-Prep, abends kochst du frisch. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
     <section class="panel">
-      ${mealRow("Salat", salat, "Mo–Fr, 15 Uhr")}
-      ${mealRow("Abendessen", abend, "Mo–Fr")}
+      ${mealRow("Salat", salat, "Mo–Fr, 15 Uhr, Box")}
+      ${mealRow("Abendessen", abend, "Mo–Fr, abends frisch")}
     </section>
     <section>
       <h3 class="h-sec">Tagessumme gegen dein Ziel</h3>
@@ -263,7 +263,7 @@ function viewEinkauf(){
 
 function viewPrep(){
   const { salat, abend, woche } = auswahl();
-  const steps = woche ? woche.prep : [`${abend.name}: 5 Portionen kochen. ${abend.hinweis}`, `${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`];
+  const steps = woche ? woche.prep : [`${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`, "Fleisch fürs Abendessen in 5 Tagesportionen teilen, Mi–Fr einfrieren."];
   const checks = store.get("prep:" + key(), {});
   return `<div class="section">
     <div class="bar"><h3>${REZ.rhythmus.prep}${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
@@ -271,9 +271,10 @@ function viewPrep(){
     ${woche ? "" : `<p class="note">Für freie Kombinationen gibt es noch keinen fertigen Ablauf, nur die Hinweise aus den Rezepten.</p>`}
     <details open><summary>Salat frisch halten</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
     <details><summary>Was wann aus dem Gefrierfach</summary><ul class="plain">
-      <li>Abendessen: Di und Mi aus dem Kühlschrank, Do und Fr einfrieren.</li>
-      <li>Salat-Protein: Do und Fr einfrieren.</li>
+      <li>Salat-Protein: Do und Fr eingefroren.</li>
+      <li>Rohes Fleisch fürs Abendessen: Mi, Do und Fr eingefroren.</li>
       <li>Immer am Vorabend in den Kühlschrank legen.</li></ul></details>
+    <details><summary>Abendessen: ${abend.name}</summary><div class="section"><p class="note">${abend.hinweis}</p>${ingList(abend)}</div></details>
   </div>`;
 }
 

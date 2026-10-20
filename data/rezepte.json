@@ -1,5 +1,5 @@
 {
- "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion aus ernaehrungsplan-4-wochen-rotation.md. Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box.",
+ "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion aus ernaehrungsplan-4-wochen-rotation.md. Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
  "ziele": {
   "kcal_tag": 2000,
   "protein_tag": 160,
@@ -130,7 +130,7 @@
      0
     ]
    ],
-   "hinweis": "Burgersoße: Quark, 1 EL Ketchup, 1 TL Senf, Gurkenwasser, Paprika. Kartoffeln in der Pfanne aufwärmen, dann werden sie wieder knusprig.",
+   "hinweis": "Pro Abend: 200 g Hack mit Zwiebel anbraten, 400 g Kartoffelwürfel 30 min bei 220 °C (oder Heißluftfritteuse). Burgersoße: Quark, 1 EL Ketchup, 1 TL Senf, Gurkenwasser, Paprika.",
    "kurz": "Burger-Bowl"
   },
   {
@@ -244,7 +244,7 @@
      0
     ]
    ],
-   "hinweis": "Kokosmilch mit 80 ml Wasser pro Portion strecken. Friert sehr gut ein.",
+   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, Zwiebel, Curry, 70 ml Kokosmilch + 80 ml Wasser, Tomaten, TK-Gemüse 10 min köcheln. Reis parallel kochen. Die Kokosmilch-Dose hält offen 3–4 Tage, Rest einfrieren.",
    "kurz": "Curry"
   },
   {
@@ -366,7 +366,7 @@
      0
     ]
    ],
-   "hinweis": "Quark erst beim Aufwärmen einrühren. Nudeln abends frisch kochen (10 min).",
+   "hinweis": "Pro Abend ca. 25 min: Hack anbraten, Zwiebel, Karotte, Tomaten und Linsen (+ 70 ml Wasser) 15 min köcheln, Nudeln parallel. Quark zum Schluss einrühren. Tipp: die Soße für 2 Abende auf einmal kochen.",
    "kurz": "Bolognese"
   },
   {
@@ -488,7 +488,7 @@
      0
     ]
    ],
-   "hinweis": "Tzatziki alle 2–3 Tage frisch anrühren.",
+   "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki alle 2–3 Tage frisch anrühren.",
    "kurz": "Gyros"
   }
  ],
@@ -497,60 +497,63 @@
    "woche": 1,
    "salat": "salat-griechisch",
    "abend": "abend-burger-bowl",
-   "prep_minuten": 75,
+   "prep_minuten": 35,
    "prep": [
-    "Ofen auf 220 °C. Kartoffeln würfeln (2 kg), auf zwei Bleche.",
-    "Hähnchen (1 kg) würzen, 20–25 min mit in den Ofen.",
-    "Währenddessen Hack (1 kg) mit Zwiebeln in zwei Ladungen anbraten.",
-    "Eine Portion sofort essen. Abfüllen: 4 × Hack + Kartoffeln (Do/Fr einfrieren), 5 × Hähnchen + Kichererbsen + Feta (Do/Fr einfrieren)."
+    "Ofen auf 200 °C. Hähnchen (1 kg) mit Oregano, Knoblauch und Zitrone würzen, 20–25 min garen.",
+    "Kichererbsen abtropfen, Feta zerbröseln.",
+    "Abfüllen: 5 × Hähnchen + Kichererbsen + Feta, die Portionen für Do und Fr einfrieren.",
+    "Dressing für Mo und Di anrühren (Quark, Olivenöl, Zitrone, Dill, Knoblauch).",
+    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
+    "Gemüse für heute schneiden und die Box für 15 Uhr fertig machen."
    ]
   },
   {
    "woche": 2,
    "salat": "salat-thunfisch-ei",
    "abend": "abend-curry",
-   "prep_minuten": 60,
+   "prep_minuten": 30,
    "prep": [
     "15 Eier hart kochen (10 min), abschrecken, ungeschält in den Kühlschrank.",
-    "Reis kochen (450 g).",
-    "Curry: Hähnchen (1,5 kg) in zwei Ladungen anbraten, Zwiebel, Curry, Kokosmilch, 400 ml Wasser, Tomaten, TK-Gemüse, 15 min köcheln.",
-    "Eine Portion sofort essen. Abfüllen: 4 × Curry + Reis (Do/Fr einfrieren).",
-    "Kidneybohnen und Mais abtropfen, in eine Box."
+    "Kidneybohnen und Mais abtropfen, in eine Box.",
+    "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Olivenöl, Essig).",
+    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
+    "Salat für heute fertig machen, Box für 15 Uhr."
    ]
   },
   {
    "woche": 3,
    "salat": "salat-asia",
    "abend": "abend-bolognese",
-   "prep_minuten": 60,
+   "prep_minuten": 35,
    "prep": [
-    "Hähnchen (1,25 kg) marinieren, 20–25 min bei 200 °C in den Ofen.",
-    "Bolognese: Hack (875 g) anbraten, Zwiebel und Karotte dazu, Tomaten, Linsen (250 g), 350 ml Wasser, 25 min köcheln.",
-    "Erdnuss-Dressing anrühren, Karotten raspeln.",
-    "Eine Portion Soße mit frischen Nudeln essen. Abfüllen: 4 × Soße (Do/Fr einfrieren), 5 × Hähnchen + Edamame."
+    "Hähnchen (1,25 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.",
+    "Erdnuss-Dressing für die ganze Woche in einem Glas anrühren, Karotten raspeln, Edamame auftauen.",
+    "Abfüllen: 5 × Hähnchen + Edamame, die Portionen für Do und Fr einfrieren.",
+    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
+    "Salat für heute fertig machen, Box für 15 Uhr."
    ]
   },
   {
    "woche": 4,
    "salat": "salat-mexiko",
    "abend": "abend-gyros",
-   "prep_minuten": 60,
+   "prep_minuten": 30,
    "prep": [
-    "Reis kochen (500 g).",
-    "Pute (1,15 kg) in zwei bis drei Ladungen braten, dann Paprika und Zwiebeln in derselben Pfanne.",
-    "Hähnchen (900 g) mit Taco-Gewürz braten.",
+    "Hähnchen (900 g) mit Taco-Gewürz in 1 EL Öl braten.",
     "Bohnen und Mais abtropfen.",
-    "Eine Portion Gyros sofort essen. Abfüllen: 4 × Gyros + Reis (Do/Fr einfrieren), 5 × Hähnchen (Do/Fr einfrieren)."
+    "Abfüllen: 5 × Hähnchen, die Portionen für Do und Fr einfrieren.",
+    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
+    "Salat für heute fertig machen, Box für 15 Uhr."
    ]
   }
  ],
  "salat_regeln": [
-  "Am Prep-Abend nur Protein und haltbare Teile vorbereiten.",
-  "Gemüse am Vorabend schneiden (5–7 min), Dressing in ein Extra-Döschen.",
-  "Do/Fr-Portionen einfrieren und am Vorabend in den Kühlschrank legen."
+  "Am Montagmorgen nur Protein und haltbare Teile für die Woche vorbereiten.",
+  "Gemüse jeweils am Vorabend schneiden (5–7 min), Dressing in ein Extra-Döschen.",
+  "Salat-Protein für Do und Fr einfrieren und am Vorabend in den Kühlschrank legen."
  ],
  "rhythmus": {
-  "einkauf": "Montag",
-  "prep": "Montagabend"
+  "einkauf": "Montagmorgen",
+  "prep": "Montagmorgen (Homeoffice)"
  }
 }
