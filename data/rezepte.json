@@ -14,8 +14,8 @@
    "portionen": 5,
    "makros": {
     "kcal": 740,
-    "protein": 87,
-    "fett": 25
+    "protein": 88,
+    "fett": 24
    },
    "zutaten": [
     [
@@ -76,7 +76,7 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1130,
+    "kcal": 1135,
     "protein": 84,
     "fett": 49
    },
@@ -139,38 +139,26 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 820,
-    "protein": 84,
-    "fett": 33
+    "kcal": 780,
+    "protein": 93,
+    "fett": 21
    },
    "zutaten": [
     [
-     "eisberg",
-     200
-    ],
-    [
-     "gurke",
-     240
-    ],
-    [
-     "tomate",
-     100
-    ],
-    [
      "thunfisch",
-     140
+     168
     ],
     [
      "eier",
      3
     ],
     [
-     "kidneybohnen",
-     96
+     "eisberg",
+     200
     ],
     [
-     "mais",
-     57
+     "cocktailtomaten",
+     100
     ],
     [
      "joghurt",
@@ -181,8 +169,12 @@
      100
     ],
     [
-     "oel",
-     10
+     "kidneybohnen",
+     144
+    ],
+    [
+     "gurke",
+     240
     ],
     [
      "senf",
@@ -193,7 +185,7 @@
      0
     ]
    ],
-   "hinweis": "Dressing: Joghurt, Quark, 2 TL Senf, 2 TL Olivenöl, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei.",
+   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei.",
    "kurz": "Thunfisch-Ei-Salat"
   },
   {
@@ -202,33 +194,21 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1025,
-    "protein": 86,
-    "fett": 30
+    "kcal": 1145,
+    "protein": 92,
+    "fett": 26
    },
    "zutaten": [
     [
-     "haehnchen",
-     300
-    ],
-    [
-     "oel",
-     10
-    ],
-    [
-     "zwiebel",
-     60
-    ],
-    [
-     "kokosmilch",
-     80
-    ],
-    [
-     "passierte_tomaten",
+     "tk_brokkoli",
      100
     ],
     [
-     "tk_brokkoli",
+     "rote_zwiebel",
+     48
+    ],
+    [
+     "passierte_tomaten",
      100
     ],
     [
@@ -236,15 +216,23 @@
      80
     ],
     [
+     "kokosmilch_light",
+     160
+    ],
+    [
+     "haehnchen",
+     300
+    ],
+    [
      "reis",
-     90
+     135
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, Zwiebel, Curry, 80 ml Kokosmilch + 80 ml Wasser, Tomaten, TK-Gemüse 10 min köcheln. Reis parallel kochen. Die Kokosmilch-Dose reicht genau für 5 Abende: Montag öffnen, 160 ml für Do und Fr einfrieren.",
+   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren.",
    "kurz": "Curry"
   },
   {
@@ -254,7 +242,7 @@
    "portionen": 5,
    "makros": {
     "kcal": 625,
-    "protein": 69,
+    "protein": 70,
     "fett": 21
    },
    "zutaten": [
@@ -316,7 +304,7 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1370,
+    "kcal": 1350,
     "protein": 99,
     "fett": 47
    },
@@ -375,8 +363,8 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 880,
-    "protein": 95,
+    "kcal": 885,
+    "protein": 96,
     "fett": 32
    },
    "zutaten": [
@@ -438,8 +426,8 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1105,
-    "protein": 98,
+    "kcal": 1130,
+    "protein": 99,
     "fett": 32
    },
    "zutaten": [
@@ -515,7 +503,7 @@
    "prep": [
     "15 Eier hart kochen (10 min), abschrecken, ungeschält in den Kühlschrank.",
     "Kidneybohnen und Mais abtropfen, in eine Box.",
-    "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Olivenöl, Essig).",
+    "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Essig).",
     "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
     "Salat für heute fertig machen, Box für 15 Uhr."
    ]
