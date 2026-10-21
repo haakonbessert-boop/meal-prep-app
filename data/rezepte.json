@@ -1,5 +1,5 @@
 {
- "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden. Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
+ "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden; Woche 2 folgt exakt Haakons Tracking-App (21.10.). Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
  "ziele": {
   "kcal_tag": 2000,
   "protein_tag": 160,
@@ -139,8 +139,8 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 780,
-    "protein": 93,
+    "kcal": 770,
+    "protein": 94,
     "fett": 21
    },
    "zutaten": [
@@ -154,7 +154,7 @@
     ],
     [
      "eisberg",
-     200
+     150
     ],
     [
      "cocktailtomaten",
@@ -166,15 +166,15 @@
     ],
     [
      "magerquark",
-     100
+     125
     ],
     [
      "kidneybohnen",
-     144
+     130
     ],
     [
      "gurke",
-     240
+     200
     ],
     [
      "senf",
@@ -185,7 +185,7 @@
      0
     ]
    ],
-   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei.",
+   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark, 200 g Gurke und eine halbe Dose Kidneybohnen fürs Wochenende.",
    "kurz": "Thunfisch-Ei-Salat"
   },
   {
@@ -194,9 +194,9 @@
    "typ": "abend",
    "portionen": 5,
    "makros": {
-    "kcal": 1145,
-    "protein": 92,
-    "fett": 26
+    "kcal": 1110,
+    "protein": 91,
+    "fett": 22
    },
    "zutaten": [
     [
@@ -205,7 +205,7 @@
     ],
     [
      "rote_zwiebel",
-     48
+     50
     ],
     [
      "passierte_tomaten",
@@ -217,7 +217,7 @@
     ],
     [
      "kokosmilch_light",
-     160
+     130
     ],
     [
      "haehnchen",
@@ -232,7 +232,7 @@
      0
     ]
    ],
-   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren.",
+   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren. Von der 2. Dose bleiben ca. 150 ml übrig.",
    "kurz": "Curry"
   },
   {
