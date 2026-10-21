@@ -185,7 +185,7 @@
      0
     ]
    ],
-   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark, 200 g Gurke und 70 g Kidneybohnen fürs Wochenende.",
+   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark und 200 g Gurke fürs Wochenende.",
    "kurz": "Thunfisch-Ei-Salat"
   },
   {
@@ -363,8 +363,8 @@
    "typ": "salat",
    "portionen": 5,
    "makros": {
-    "kcal": 885,
-    "protein": 96,
+    "kcal": 895,
+    "protein": 97,
     "fett": 32
    },
    "zutaten": [
@@ -390,7 +390,7 @@
     ],
     [
      "kidneybohnen",
-     96
+     104
     ],
     [
      "mais",
