@@ -1,0 +1,23 @@
+// Offline-Modus (nur eigene Caches löschen, beide Apps liegen auf derselben Domain): App-Dateien beim Installieren speichern, Schriften beim ersten Laden.
+const PREFIX = "prep-box-v";
+const CACHE = PREFIX + "0.10.0";
+const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
+
+self.addEventListener("install", e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
+});
+self.addEventListener("activate", e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith(PREFIX) && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener("fetch", e => {
+  if (e.request.method !== "GET") return;
+  // Erst Netz, damit Updates sofort ankommen; ohne Netz aus dem Speicher.
+  e.respondWith(
+    // Eigene Dateien immer beim Server nachfragen (kein HTTP-Cache), sonst hängen Updates bis zu 10 min.
+    fetch(e.request, new URL(e.request.url).origin === location.origin ? { cache: "no-cache" } : {}).then(res => {
+      const copy = res.clone();
+      caches.open(CACHE).then(c => c.put(e.request, copy));
+      return res;
+    }).catch(() => caches.match(e.request).then(r => r || caches.match("index.html")))
+  );
+});

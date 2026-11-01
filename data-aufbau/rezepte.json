@@ -1,0 +1,519 @@
+{
+ "_info": "Aufbau-Profil (zweite Person). Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; Eier, Wraps, Gewürzgurken, Limette in Stück). Ein dritter Wert [zutat, menge, anzahl] heißt: nur für so viele Portionen (Freitags-Box mit gegartem Hähnchen aus der Packung, weil Sonntag gegartes Fleisch nur bis Donnerstag hält). Makros werden von make.py aus zutaten.json berechnet. Quelle: Second Brain, Ernährungsplan Aufbau-Rotation v6, 2026-11-01.",
+ "ui": {
+  "app_name": "Prep Box",
+  "storage": "mpa.",
+  "cache": "prep-box-v",
+  "lead": "Samstag Einkauf, Sonntag Prep der Mittags-Boxen, abends kochst du in 15 Minuten frisch. Werte pro Portion, so wie du sie in die Tracking-App einträgst.",
+  "label_salat": "Mittag",
+  "when_salat": "Mo–Fr, Box aus dem Kühlschrank",
+  "when_abend": "Mo–Fr, abends frisch",
+  "frei_salat": "Mittag (5 Boxen)",
+  "frei_text": "Mittag und Abendessen selbst kombinieren",
+  "einkauf_note": "Alles für Mo–Fr wird am Samstag gekauft. Kein Tiefkühler: Rohes Fleisch nur für die Boxen, die am Sonntag gekocht werden. Abends nur Zutaten, die ungeöffnet bis Freitag halten.",
+  "frisch_titel": "Boxen sicher und frisch halten",
+  "frei_prep": "Sonntag: Mittags-Boxen für Mo–Fr vorbereiten, Hähnchen für Mo–Do braten, Freitag mit gegartem Hähnchen aus der Packung.",
+  "tiefkuehl": false
+ },
+ "ziele": {
+  "kcal_min": 2400,
+  "kcal_max": 2500,
+  "kcal_tag": 2450,
+  "protein_tag": 130
+ },
+ "rhythmus": {
+  "einkauf": "Samstag",
+  "prep": "Sonntag"
+ },
+ "salat_regeln": [
+  "Gekochte Nudeln und Hähnchen nach dem Kochen flach ausbreiten, abkühlen lassen und innerhalb von 2 Stunden in den Kühlschrank.",
+  "Am Sonntag gebratenes Hähnchen hält bis Donnerstag. Die Freitags-Box bekommt gegarte Hähnchenstreifen aus der Vakuumpackung (erst Freitagmorgen öffnen).",
+  "Knuspriges (Chips, Speck) und Dressings in ein Extra-Döschen, erst beim Essen dazu.",
+  "Boxen hinten in den Kühlschrank stellen, nicht in die Tür."
+ ],
+ "rezepte": [
+  {
+   "id": "mittag-nudelsalat",
+   "name": "Klassischer Nudelsalat mit Hähnchen",
+   "kurz": "Nudelsalat",
+   "typ": "salat",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "nudeln",
+     150
+    ],
+    [
+     "haehnchen",
+     200,
+     4
+    ],
+    [
+     "haehnchen_gegart",
+     150,
+     1
+    ],
+    [
+     "oel",
+     5
+    ],
+    [
+     "eier",
+     1
+    ],
+    [
+     "gouda",
+     40
+    ],
+    [
+     "mais",
+     80
+    ],
+    [
+     "gewuerzgurken",
+     2
+    ],
+    [
+     "paprika",
+     90
+    ],
+    [
+     "fruehlingszwiebel",
+     0.2
+    ],
+    [
+     "mayo",
+     50
+    ],
+    [
+     "griech_joghurt",
+     50
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Nudeln bissfest kochen, kalt abspülen. Hähnchen würfeln und braten. Dressing: Mayo, Joghurt, etwas Gurkenwasser, Salz, Pfeffer. Ei hart kochen, Gouda und Gurken würfeln.",
+   "makros": {
+    "kcal": 1420,
+    "protein": 89,
+    "fett": 58
+   }
+  },
+  {
+   "id": "mittag-pesto",
+   "name": "Pesto-Pasta-Salat mit Hähnchen und Mozzarella",
+   "kurz": "Pesto-Pasta",
+   "typ": "salat",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "nudeln",
+     150
+    ],
+    [
+     "haehnchen",
+     200,
+     4
+    ],
+    [
+     "haehnchen_gegart",
+     150,
+     1
+    ],
+    [
+     "oel",
+     5
+    ],
+    [
+     "pesto",
+     60
+    ],
+    [
+     "mozzarella_mini",
+     60
+    ],
+    [
+     "getr_tomaten",
+     30
+    ],
+    [
+     "pinienkerne",
+     10
+    ],
+    [
+     "cocktailtomaten",
+     100
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Nudeln kochen, mit Pesto mischen, solange sie warm sind. Hähnchen braten, in Streifen. Tomaten halbieren, getrocknete Tomaten schneiden, Pinienkerne ohne Öl rösten.",
+   "makros": {
+    "kcal": 1350,
+    "protein": 82,
+    "fett": 60
+   }
+  },
+  {
+   "id": "mittag-texmex",
+   "name": "Tex-Mex-Nudelsalat mit Hähnchen",
+   "kurz": "Tex-Mex-Nudeln",
+   "typ": "salat",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "nudeln",
+     150
+    ],
+    [
+     "haehnchen",
+     200,
+     4
+    ],
+    [
+     "haehnchen_gegart",
+     150,
+     1
+    ],
+    [
+     "oel",
+     5
+    ],
+    [
+     "kidneybohnen",
+     100
+    ],
+    [
+     "mais",
+     80
+    ],
+    [
+     "cheddar",
+     40
+    ],
+    [
+     "salsa",
+     50
+    ],
+    [
+     "schmand",
+     40
+    ],
+    [
+     "paprika",
+     90
+    ],
+    [
+     "limette",
+     0.2
+    ],
+    [
+     "tortilla_chips",
+     25
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Hähnchen mit Taco-Gewürz braten. Nudeln, Bohnen, Mais, Paprika, Salsa und Schmand mischen, Limettensaft dazu. Cheddar drüber, Chips separat.",
+   "makros": {
+    "kcal": 1380,
+    "protein": 89,
+    "fett": 40
+   }
+  },
+  {
+   "id": "mittag-caesar",
+   "name": "Chicken-Caesar-Nudelsalat",
+   "kurz": "Caesar-Nudeln",
+   "typ": "salat",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "nudeln",
+     150
+    ],
+    [
+     "haehnchen",
+     200,
+     4
+    ],
+    [
+     "haehnchen_gegart",
+     150,
+     1
+    ],
+    [
+     "oel",
+     5
+    ],
+    [
+     "eier",
+     2
+    ],
+    [
+     "parmesan",
+     40
+    ],
+    [
+     "speck",
+     30
+    ],
+    [
+     "roemersalat",
+     100
+    ],
+    [
+     "cocktailtomaten",
+     100
+    ],
+    [
+     "caesar_dressing",
+     40
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Farfalle kochen. Hähnchen braten, Speck knusprig auslassen. Eier hart kochen. Römersalat ganz lassen und erst morgens schneiden, Dressing separat.",
+   "makros": {
+    "kcal": 1390,
+    "protein": 101,
+    "fett": 56
+   }
+  },
+  {
+   "id": "abend-schuettelpizza",
+   "name": "Schüttelpizza mit Schinken",
+   "kurz": "Schüttelpizza",
+   "typ": "abend",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "mehl",
+     100
+    ],
+    [
+     "eier",
+     2
+    ],
+    [
+     "milch",
+     100
+    ],
+    [
+     "passierte_tomaten",
+     80
+    ],
+    [
+     "kochschinken",
+     125
+    ],
+    [
+     "mais",
+     50
+    ],
+    [
+     "paprika",
+     90
+    ],
+    [
+     "pizzakaese",
+     75
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Mehl, Eier, Milch, Salz und Oregano in einer Dose kräftig schütteln, auf ein Blech mit Backpapier gießen. Tomatensauce, Schinken, Mais, Paprika, Käse drauf. 200 °C, ca. 20 min.",
+   "makros": {
+    "kcal": 1030,
+    "protein": 73,
+    "fett": 40
+   }
+  },
+  {
+   "id": "abend-tortellini",
+   "name": "Tortellini-Pfanne mit Schinken und Tomaten",
+   "kurz": "Tortellini",
+   "typ": "abend",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "tortellini",
+     250
+    ],
+    [
+     "kochschinken",
+     100
+    ],
+    [
+     "cocktailtomaten",
+     150
+    ],
+    [
+     "kochsahne",
+     100
+    ],
+    [
+     "parmesan",
+     15
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Schinken anbraten, Tomaten halbieren und kurz mitbraten. Sahne und einen Schuss Wasser dazu, Tortellini direkt darin 4–5 min garen. Parmesan drüber.",
+   "makros": {
+    "kcal": 1060,
+    "protein": 56,
+    "fett": 41
+   }
+  },
+  {
+   "id": "abend-kaesespaetzle",
+   "name": "Käsespätzle mit Schinken",
+   "kurz": "Käsespätzle",
+   "typ": "abend",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "spaetzle",
+     350
+    ],
+    [
+     "kochschinken",
+     100
+    ],
+    [
+     "emmentaler",
+     60
+    ],
+    [
+     "sahne",
+     40
+    ],
+    [
+     "roestzwiebeln",
+     15
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Spätzle und Schinken in der Pfanne anbraten, Sahne dazu, Käse unterheben und schmelzen lassen. Röstzwiebeln drüber.",
+   "makros": {
+    "kcal": 1120,
+    "protein": 59,
+    "fett": 47
+   }
+  },
+  {
+   "id": "abend-quesadillas",
+   "name": "Hähnchen-Quesadillas",
+   "kurz": "Quesadillas",
+   "typ": "abend",
+   "portionen": 5,
+   "zutaten": [
+    [
+     "wraps",
+     3
+    ],
+    [
+     "haehnchen_gegart",
+     150
+    ],
+    [
+     "cheddar",
+     60
+    ],
+    [
+     "kidneybohnen",
+     80
+    ],
+    [
+     "mais",
+     50
+    ],
+    [
+     "salsa",
+     50
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Wraps halbseitig mit Hähnchen, Bohnen, Mais und Cheddar belegen, zuklappen. In der Pfanne ohne Öl je Seite 2–3 min knusprig braten. Salsa zum Dippen.",
+   "makros": {
+    "kcal": 1110,
+    "protein": 71,
+    "fett": 38
+   }
+  }
+ ],
+ "rotation": [
+  {
+   "woche": 1,
+   "salat": "mittag-nudelsalat",
+   "abend": "abend-schuettelpizza",
+   "prep_minuten": 45,
+   "prep": [
+    "750 g Nudeln bissfest kochen, kalt abspülen. 5 Eier hart kochen.",
+    "800 g Hähnchen würfeln, mit Salz und Paprika in Öl braten, flach abkühlen lassen.",
+    "Dressing anrühren: Mayo, griechischer Joghurt, etwas Gurkenwasser, Salz, Pfeffer.",
+    "Gouda, Gewürzgurken, Paprika und Frühlingszwiebeln klein schneiden, Mais abtropfen.",
+    "Alles mischen und auf 5 Boxen verteilen. Hähnchen nur in 4 Boxen (Mo–Do), die Freitags-Box ohne Fleisch.",
+    "Freitagmorgen: Packung gegarte Hähnchenstreifen öffnen und in die letzte Box geben."
+   ]
+  },
+  {
+   "woche": 2,
+   "salat": "mittag-pesto",
+   "abend": "abend-tortellini",
+   "prep_minuten": 40,
+   "prep": [
+    "750 g Fusilli bissfest kochen, abgießen und warm mit dem Pesto mischen.",
+    "800 g Hähnchen braten, in Streifen schneiden, flach abkühlen lassen.",
+    "Pinienkerne ohne Öl rösten, Cocktailtomaten halbieren, getrocknete Tomaten schneiden, Mozzarella abtropfen.",
+    "Auf 5 Boxen verteilen. Hähnchen nur in 4 Boxen (Mo–Do).",
+    "Freitagmorgen: gegarte Hähnchenstreifen aus der Packung in die letzte Box."
+   ]
+  },
+  {
+   "woche": 3,
+   "salat": "mittag-texmex",
+   "abend": "abend-kaesespaetzle",
+   "prep_minuten": 40,
+   "prep": [
+    "750 g Nudeln bissfest kochen, kalt abspülen.",
+    "800 g Hähnchen mit Taco-Gewürz in Öl braten, flach abkühlen lassen.",
+    "Bohnen und Mais abtropfen, Paprika würfeln. Mit Nudeln, Salsa, Schmand und Limettensaft mischen.",
+    "Auf 5 Boxen verteilen, Cheddar drüber. Hähnchen nur in 4 Boxen (Mo–Do). Chips in 5 kleine Beutel.",
+    "Freitagmorgen: gegarte Hähnchenstreifen aus der Packung in die letzte Box."
+   ]
+  },
+  {
+   "woche": 4,
+   "salat": "mittag-caesar",
+   "abend": "abend-quesadillas",
+   "prep_minuten": 40,
+   "prep": [
+    "750 g Farfalle bissfest kochen, kalt abspülen. 10 Eier hart kochen.",
+    "800 g Hähnchen braten, Speck knusprig auslassen, beides flach abkühlen lassen.",
+    "Parmesan hobeln, Cocktailtomaten halbieren. Römersalat ganz lassen.",
+    "Nudeln, Tomaten, Eier und Parmesan auf 5 Boxen verteilen, Hähnchen nur in 4 Boxen (Mo–Do). Speck und Dressing in Extra-Döschen.",
+    "Morgens: Salat schneiden und dazu. Freitag: gegarte Hähnchenstreifen aus der Packung."
+   ]
+  }
+ ]
+}

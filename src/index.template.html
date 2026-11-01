@@ -160,6 +160,17 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
 <script>
 const REZ = /*REZEPTE*/;
 const ZUT = /*ZUTATEN*/;
+// Texte und Rhythmus je Profil (Standard = Haakons App, data-aufbau/ überschreibt sie)
+const UI = Object.assign({
+  storage: "mp.",
+  lead: "Montagmorgen Einkauf und Salat-Prep, abends kochst du frisch. Pro Portion, so wie du es in die Tracking-App einträgst.",
+  label_salat: "Salat", when_salat: "Mo–Fr, 15 Uhr, Box",
+  label_abend: "Abendessen", when_abend: "Mo–Fr, abends frisch",
+  einkauf_note: "Die Mengen gehen in ganzen Packungen auf: Frisches ist bis Freitag aufgebraucht. Übrig bleiben dürfen nur haltbare Sachen wie TK-Gemüse, Gewürzgurken oder Parmesan.",
+  frisch_titel: "Salat frisch halten",
+  frei_prep: null,
+  tiefkuehl: true
+}, REZ.ui || {});
 
 const byId = Object.fromEntries(REZ.rezepte.map(r => [r.id, r]));
 const salate = REZ.rezepte.filter(r => r.typ === "salat");
@@ -167,8 +178,8 @@ const abende = REZ.rezepte.filter(r => r.typ === "abend");
 const ABT = ["Obst & Gemüse", "Kühltheke", "Konserven & Trocken", "Tiefkühl"];
 
 const store = {
-  get(k, d){ try { const v = localStorage.getItem("mp." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
-  set(k, v){ try { localStorage.setItem("mp." + k, JSON.stringify(v)); } catch {} }
+  get(k, d){ try { const v = localStorage.getItem(UI.storage + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(UI.storage + k, JSON.stringify(v)); } catch {} }
 };
 let state = Object.assign({ wahl: 1, salat: salate[0].id, abend: abende[0].id, tab: "woche" }, store.get("state", {}));
 const save = () => store.set("state", state);
@@ -187,7 +198,7 @@ function einkauf(){
   const { salat, abend } = auswahl();
   const tot = {};
   for (const r of [salat, abend])
-    for (const [k, m] of r.zutaten) tot[k] = (tot[k] || 0) + m * r.portionen;
+    for (const [k, m, n] of r.zutaten) tot[k] = (tot[k] || 0) + m * (n ?? r.portionen);
   const out = {}, vorrat = [];
   for (const [k, m] of Object.entries(tot)){
     const z = ZUT[k];
@@ -197,7 +208,7 @@ function einkauf(){
     if (p.einheit === "g" && p.menge === 1) qty = `${fmt(Math.round(m / 10) * 10)} g`;
     else {
       const n = Math.max(1, Math.ceil(m / p.menge - 0.08));
-      const PL = { "Dose": "Dosen", "Glas": "Gläser", "Knolle": "Knollen", "Schale 500 g": "Schalen à 500 g", "Netz 2 kg": "Netze à 2 kg", "Beutel 1 kg": "Beutel à 1 kg" };
+      const PL = { "Dose": "Dosen", "Glas": "Gläser", "Knolle": "Knollen", "Schale 500 g": "Schalen à 500 g", "Schale 250 g": "Schalen à 250 g", "Netz 2 kg": "Netze à 2 kg", "Beutel 1 kg": "Beutel à 1 kg" };
       qty = `${n} ${n > 1 && PL[p.einheit] ? PL[p.einheit] : p.einheit}`;
       if (p.menge >= 50) need = `${fmt(Math.round(m))} g gebraucht`;
     }
@@ -226,14 +237,18 @@ function viewWoche(){
   const di = { kcal: salat.makros.kcal + abend.makros.kcal, protein: salat.makros.protein + abend.makros.protein };
   const st = (v, goal, isP) => isP
     ? (v >= goal ? `<span class="st">Ziel erreicht</span>` : `<span class="st warn">${goal - v} g fehlen</span>`)
-    : (v <= goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
-  const rest = z.kcal_woche - 5 * di.kcal;
+    : z.kcal_min != null
+      ? (v < z.kcal_min ? `<span class="st warn">${fmt(z.kcal_min - v)} fehlen</span>` : v > z.kcal_max ? `<span class="st warn">${fmt(v - z.kcal_max)} drüber</span>` : `<span class="st">im Zielbereich</span>`)
+      : (v <= goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
+  const note = z.kcal_min != null
+    ? `Ziel: ${fmt(z.kcal_min)}–${fmt(z.kcal_max)} kcal und mindestens ${z.protein_tag} g Protein pro Tag, komplett aus Mittag und Abendessen.`
+    : `Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende, an dem du frisch kochst, bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(z.kcal_woche - 5 * di.kcal)} kcal.`;
   return `
     <div><h1 class="hello">Diese Woche: <em>${salat.kurz}</em> und <em>${abend.kurz}</em>.</h1>
-    <p class="lead">Montagmorgen Einkauf und Salat-Prep, abends kochst du frisch. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
+    <p class="lead">${UI.lead}</p></div>
     <section class="panel">
-      ${mealRow("Salat", salat, "Mo–Fr, 15 Uhr, Box")}
-      ${mealRow("Abendessen", abend, "Mo–Fr, abends frisch")}
+      ${mealRow(UI.label_salat, salat, UI.when_salat)}
+      ${mealRow(UI.label_abend, abend, UI.when_abend)}
     </section>
     <section>
       <h3 class="h-sec">Tagessumme gegen dein Ziel</h3>
@@ -243,7 +258,7 @@ function viewWoche(){
           <tr><td>Mo–Fr</td><td>${fmt(di.kcal)}<br>${st(di.kcal, z.kcal_tag)}</td><td>${di.protein} g<br>${st(di.protein, z.protein_tag, true)}</td></tr>
         </tbody></table></div>
     </section>
-    <p class="note">Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende, an dem du frisch kochst, bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(rest)} kcal.</p>`;
+    <p class="note">${note}</p>`;
 }
 
 function viewEinkauf(){
@@ -258,31 +273,31 @@ function viewEinkauf(){
     h += `</div>`;
   }
   h += `<details><summary>Vorrat prüfen (${vorrat.length})</summary><ul class="plain">${vorrat.map(v => `<li>${v}</li>`).join("")}</ul></details>
-  <p class="note">Die Mengen gehen in ganzen Packungen auf: Frisches ist bis Freitag aufgebraucht. Übrig bleiben dürfen nur haltbare Sachen wie TK-Gemüse, Gewürzgurken oder Parmesan.</p></div>`;
+  <p class="note">${UI.einkauf_note}</p></div>`;
   return h;
 }
 
 function viewPrep(){
   const { salat, abend, woche } = auswahl();
-  const steps = woche ? woche.prep : [`${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`, "Fleisch fürs Abendessen in 5 Tagesportionen teilen, Mi–Fr einfrieren."];
+  const steps = woche ? woche.prep : UI.frei_prep ? [UI.frei_prep, salat.hinweis] : [`${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`, "Fleisch fürs Abendessen in 5 Tagesportionen teilen, Mi–Fr einfrieren."];
   const checks = store.get("prep:" + key(), {});
   return `<div class="section">
     <div class="bar"><h3>${REZ.rhythmus.prep}${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
     <div class="group">${steps.map((s, i) => `<label class="item ${checks[i] ? "done" : ""}"><input type="checkbox" id="p-${i}" data-p="${i}" ${checks[i] ? "checked" : ""}><span class="stepno">${i + 1}</span><span class="what">${s}</span></label>`).join("")}</div>
     ${woche ? "" : `<p class="note">Für freie Kombinationen gibt es noch keinen fertigen Ablauf, nur die Hinweise aus den Rezepten.</p>`}
-    <details open><summary>Salat frisch halten</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
-    <details><summary>Was wann aus dem Gefrierfach</summary><ul class="plain">
+    <details open><summary>${UI.frisch_titel}</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
+    ${UI.tiefkuehl ? `<details><summary>Was wann aus dem Gefrierfach</summary><ul class="plain">
       <li>Salat-Protein: Do und Fr eingefroren.</li>
       <li>Rohes Fleisch fürs Abendessen: Mi, Do und Fr eingefroren.</li>
-      <li>Immer am Vorabend in den Kühlschrank legen.</li></ul></details>
+      <li>Immer am Vorabend in den Kühlschrank legen.</li></ul></details>` : ""}
     <details><summary>Abendessen: ${abend.name}</summary><div class="section"><p class="note">${abend.hinweis}</p>${ingList(abend)}</div></details>
   </div>`;
 }
 
 function ingList(r){
-  const rows = r.zutaten.filter(([k, m]) => m > 0).map(([k, m]) => {
-    const z = ZUT[k], unit = (z.packung && z.packung.menge === 1 && z.packung.einheit !== "g") || k === "eier" || k === "knoblauch" || k === "gewuerzgurken" ? (k === "knoblauch" ? " Zehe" : " Stk.") : " g";
-    return `<span>${z.name}</span><span>${fmt(m)}${unit}</span><span>${fmt(Math.round(m * r.portionen * 100) / 100)}${unit}</span>`;
+  const rows = r.zutaten.filter(([k, m]) => m > 0).map(([k, m, n]) => {
+    const z = ZUT[k], unit = z.stueck ? " Stk." : (z.packung && z.packung.menge === 1 && z.packung.einheit !== "g") || k === "eier" || k === "knoblauch" || k === "gewuerzgurken" ? (k === "knoblauch" ? " Zehe" : " Stk.") : " g";
+    return `<span>${z.name}${n != null ? ` <small>(${n} von ${r.portionen})</small>` : ""}</span><span>${fmt(m)}${unit}</span><span>${fmt(Math.round(m * (n ?? r.portionen) * 100) / 100)}${unit}</span>`;
   }).join("");
   return `<div class="ing"><span class="h">Zutat</span><span class="h">Portion</span><span class="h">× ${r.portionen}</span>${rows}</div>`;
 }

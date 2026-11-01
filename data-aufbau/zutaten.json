@@ -1,0 +1,567 @@
+{
+ "_info": "Zutaten-Stammdaten Aufbau-Profil. Nährwerte = Standardwerte pro 100 g/ml bzw. pro Stück, vor dem Start mit der Tracking-App abgleichen. Kein Tiefkühler: nichts aus der Tiefkühltruhe.",
+ "paprika": {
+  "name": "Paprika",
+  "abteilung": "Obst & Gemüse",
+  "packung": {
+   "einheit": "Stück",
+   "menge": 180
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 31,
+   "protein": 1,
+   "fett": 0.3
+  }
+ },
+ "fruehlingszwiebel": {
+  "name": "Frühlingszwiebeln",
+  "abteilung": "Obst & Gemüse",
+  "packung": {
+   "einheit": "Bund",
+   "menge": 1
+  },
+  "naehrwerte": {
+   "basis": "Bund",
+   "kcal": 32,
+   "protein": 1.8,
+   "fett": 0.2
+  }
+ },
+ "cocktailtomaten": {
+  "name": "Cocktailtomaten",
+  "abteilung": "Obst & Gemüse",
+  "packung": {
+   "einheit": "Schale 250 g",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 19,
+   "protein": 0.9,
+   "fett": 0.3
+  }
+ },
+ "roemersalat": {
+  "name": "Römersalatherzen",
+  "abteilung": "Obst & Gemüse",
+  "packung": {
+   "einheit": "Pck.",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 17,
+   "protein": 1.2,
+   "fett": 0.3
+  }
+ },
+ "limette": {
+  "name": "Limette",
+  "abteilung": "Obst & Gemüse",
+  "packung": {
+   "einheit": "Stück",
+   "menge": 1
+  },
+  "naehrwerte": {
+   "basis": "Stück",
+   "kcal": 6,
+   "protein": 0.1,
+   "fett": 0
+  },
+  "stueck": true
+ },
+ "haehnchen": {
+  "name": "Hähnchenbrust frisch",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 500 g",
+   "menge": 500
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 105,
+   "protein": 23.5,
+   "fett": 1.2
+  }
+ },
+ "haehnchen_gegart": {
+  "name": "Hähnchenbrust-Streifen gegart (vakuumiert)",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 150 g",
+   "menge": 150
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 115,
+   "protein": 22,
+   "fett": 2.5
+  }
+ },
+ "kochschinken": {
+  "name": "Kochschinken-Würfel",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 110,
+   "protein": 19,
+   "fett": 3.5
+  }
+ },
+ "speck": {
+  "name": "Speckwürfel",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 150 g",
+   "menge": 150
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 310,
+   "protein": 15,
+   "fett": 28
+  }
+ },
+ "eier": {
+  "name": "Eier",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "Stück",
+   "menge": 1
+  },
+  "naehrwerte": {
+   "basis": "Stück",
+   "kcal": 81,
+   "protein": 7.5,
+   "fett": 5.5
+  },
+  "haltbar": true,
+  "stueck": true
+ },
+ "gouda": {
+  "name": "Gouda am Stück",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 360,
+   "protein": 25,
+   "fett": 28
+  }
+ },
+ "mozzarella_mini": {
+  "name": "Mini-Mozzarella",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 125 g",
+   "menge": 125
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 250,
+   "protein": 18,
+   "fett": 19
+  }
+ },
+ "cheddar": {
+  "name": "Cheddar gerieben",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 400,
+   "protein": 25,
+   "fett": 33
+  }
+ },
+ "emmentaler": {
+  "name": "Emmentaler gerieben",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 380,
+   "protein": 28,
+   "fett": 30
+  }
+ },
+ "pizzakaese": {
+  "name": "Pizzakäse gerieben",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 250 g",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 320,
+   "protein": 23,
+   "fett": 25
+  }
+ },
+ "parmesan": {
+  "name": "Parmesan/Grana am Stück",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 150 g",
+   "menge": 150
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 390,
+   "protein": 33,
+   "fett": 28
+  },
+  "haltbar": true
+ },
+ "griech_joghurt": {
+  "name": "Griechischer Joghurt 10 %",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 500 g",
+   "menge": 500
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 120,
+   "protein": 5.5,
+   "fett": 10
+  }
+ },
+ "schmand": {
+  "name": "Schmand",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 240,
+   "protein": 2.7,
+   "fett": 24
+  }
+ },
+ "kochsahne": {
+  "name": "Kochsahne 15 % (H)",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 ml",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 165,
+   "protein": 3,
+   "fett": 15
+  }
+ },
+ "sahne": {
+  "name": "Schlagsahne",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 200 ml",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 290,
+   "protein": 2.4,
+   "fett": 30
+  }
+ },
+ "tortellini": {
+  "name": "Tortellini mit Käse (Kühlregal)",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 250 g",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 280,
+   "protein": 11,
+   "fett": 7
+  }
+ },
+ "spaetzle": {
+  "name": "Spätzle (Kühlregal)",
+  "abteilung": "Kühltheke",
+  "packung": {
+   "einheit": "× 500 g",
+   "menge": 500
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 165,
+   "protein": 6,
+   "fett": 2
+  }
+ },
+ "nudeln": {
+  "name": "Nudeln (Spirelli, Fusilli, Farfalle)",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "× 500 g",
+   "menge": 500
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 355,
+   "protein": 12,
+   "fett": 1.5
+  },
+  "haltbar": true
+ },
+ "wraps": {
+  "name": "Weizen-Wraps",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Pck. à 6",
+   "menge": 6
+  },
+  "naehrwerte": {
+   "basis": "Stück",
+   "kcal": 185,
+   "protein": 5,
+   "fett": 4.5
+  },
+  "stueck": true
+ },
+ "mais": {
+  "name": "Mais (Dose)",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Dose",
+   "menge": 285
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 80,
+   "protein": 2.5,
+   "fett": 1.2
+  }
+ },
+ "kidneybohnen": {
+  "name": "Kidneybohnen (Dose)",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Dose",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 108,
+   "protein": 7.5,
+   "fett": 0.6
+  }
+ },
+ "gewuerzgurken": {
+  "name": "Gewürzgurken",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Glas",
+   "menge": 15
+  },
+  "naehrwerte": {
+   "basis": "Stück",
+   "kcal": 5,
+   "protein": 0.2,
+   "fett": 0
+  },
+  "haltbar": true,
+  "stueck": true
+ },
+ "pesto": {
+  "name": "Pesto Genovese",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Glas",
+   "menge": 190
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 450,
+   "protein": 5,
+   "fett": 45
+  }
+ },
+ "getr_tomaten": {
+  "name": "Getrocknete Tomaten in Öl",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Glas",
+   "menge": 170
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 200,
+   "protein": 4,
+   "fett": 15
+  }
+ },
+ "pinienkerne": {
+  "name": "Pinienkerne",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "× 50 g",
+   "menge": 50
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 670,
+   "protein": 14,
+   "fett": 68
+  },
+  "haltbar": true
+ },
+ "salsa": {
+  "name": "Salsa-Dip",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Glas",
+   "menge": 300
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 35,
+   "protein": 1.5,
+   "fett": 0.3
+  }
+ },
+ "tortilla_chips": {
+  "name": "Tortilla-Chips",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Beutel",
+   "menge": 175
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 490,
+   "protein": 7,
+   "fett": 24
+  }
+ },
+ "caesar_dressing": {
+  "name": "Caesar-Dressing",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Flasche",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 380,
+   "protein": 2,
+   "fett": 38
+  }
+ },
+ "mayo": {
+  "name": "Salatmayonnaise",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Glas",
+   "menge": 250
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 480,
+   "protein": 1,
+   "fett": 50
+  },
+  "haltbar": true
+ },
+ "passierte_tomaten": {
+  "name": "Passierte Tomaten",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "× 500 g",
+   "menge": 500
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 25,
+   "protein": 1.3,
+   "fett": 0.2
+  }
+ },
+ "milch": {
+  "name": "H-Milch 3,5 %",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "× 1 l",
+   "menge": 1000
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 64,
+   "protein": 3.4,
+   "fett": 3.5
+  }
+ },
+ "roestzwiebeln": {
+  "name": "Röstzwiebeln",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Becher",
+   "menge": 150
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 600,
+   "protein": 6,
+   "fett": 42
+  },
+  "haltbar": true
+ },
+ "mehl": {
+  "name": "Mehl",
+  "abteilung": "Vorrat",
+  "packung": {
+   "einheit": "g",
+   "menge": 1
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 340,
+   "protein": 10,
+   "fett": 1
+  },
+  "vorrat": true
+ },
+ "oel": {
+  "name": "Öl",
+  "abteilung": "Vorrat",
+  "packung": {
+   "einheit": "g",
+   "menge": 1
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 900,
+   "protein": 0,
+   "fett": 100
+  },
+  "vorrat": true
+ },
+ "gewuerze": {
+  "name": "Gewürze (Salz, Pfeffer, Paprika, Oregano, Taco)",
+  "abteilung": "Vorrat",
+  "vorrat": true
+ }
+}
