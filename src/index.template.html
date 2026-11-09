@@ -309,7 +309,7 @@ function viewRezepte(){
 
 
 // Habits: Liste der Gewohnheiten und pro Tag, was erledigt ist. Alles lokal im Browser.
-const HSTART = ["Bett machen", "Zähne putzen", "Duschen"];
+const HSTART = ["Bett machen", "Zähne putzen morgens", "Duschen", "Kalorien getrackt", "Zähne putzen abends", "Tagebuch schreiben"];
 const esc = t => String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const dayKey = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 const shift = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
