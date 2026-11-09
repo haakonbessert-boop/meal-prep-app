@@ -51,8 +51,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .week-btn b{font:600 1rem/1.25 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .week-btn span{font-size:.82rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kw{font:500 .78rem var(--mono);color:var(--muted);white-space:nowrap}
-.switch{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:3px;background:var(--sidebar);border:1px solid var(--line);border-radius:12px}
-.switch button{border:none;background:none;padding:7px 2px;border-radius:9px;font-size:.88rem;color:var(--muted);cursor:pointer}
+.switch{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:3px;background:var(--sidebar);border:1px solid var(--line);border-radius:12px}
+.switch button{border:none;background:none;padding:7px 1px;border-radius:9px;font-size:.84rem;min-width:0;color:var(--muted);cursor:pointer}
 .switch button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
 
 /* Seitenmenü */
@@ -125,6 +125,21 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
 .ing{display:grid;grid-template-columns:1fr auto auto;gap:3px 14px;font-size:.9rem}
 .ing span:nth-child(3n+2),.ing span:nth-child(3n){text-align:right;font-family:var(--mono);font-size:.84rem}
 .ing .h{font:500 .72rem var(--sans)!important;color:var(--muted)}
+
+/* Habits */
+.habit .what{display:grid;gap:3px}
+.dots{display:flex;gap:4px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--accent-fill)}
+.streak{font:500 .84rem var(--mono);color:var(--ink-2);white-space:nowrap;text-align:right}
+.streak small{display:block;font:.72rem var(--sans);color:var(--muted)}
+.item.done .streak{text-decoration:none;color:var(--ink-2)}
+.edit-row{display:flex;gap:8px;align-items:center;padding:9px 14px;border-top:1px solid var(--line)}
+.edit-row:first-child{border-top:none}
+.edit-row input,.add input{flex:1;min-width:0;font:.95rem var(--sans);padding:8px 10px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.del{border:none;background:none;color:var(--warn);font-size:.85rem;cursor:pointer;padding:6px 4px}
+.add{display:flex;gap:8px}
+.add button{border:none;background:var(--accent-fill);color:var(--on-accent);border-radius:var(--r-sm);padding:8px 14px;font-weight:500;cursor:pointer}
 </style>
 
 <header class="top"><div class="top-in">
@@ -138,6 +153,7 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
     <button role="tab" data-tab="einkauf">Einkauf</button>
     <button role="tab" data-tab="prep">Prep</button>
     <button role="tab" data-tab="rezepte">Rezepte</button>
+    <button role="tab" data-tab="habits">Habits</button>
   </div>
 </div></header>
 
@@ -155,7 +171,7 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
 </aside>
 
 <main class="wrap" id="view"></main>
-<footer class="ver">Version 0.9.3</footer>
+<footer class="ver">Version 0.10.1</footer>
 
 <script>
 const REZ = {"_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden; Woche 2 folgt exakt Haakons Tracking-App (21.10.). Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.", "ziele": {"kcal_tag": 2000, "protein_tag": 160, "fett_min_tag": 60, "kcal_woche": 14000}, "rezepte": [{"id": "salat-griechisch", "name": "Griechischer Gurkensalat mit Hähnchen", "typ": "salat", "portionen": 5, "makros": {"kcal": 740, "protein": 88, "fett": 24}, "zutaten": [["gurke", 320], ["tomate", 120], ["rote_zwiebel", 32], ["haehnchen", 200], ["kichererbsen", 96], ["feta", 40], ["magerquark", 200], ["oel", 10], ["zitrone", 0.2], ["knoblauch", 1], ["dill", 0], ["gewuerze", 0]], "hinweis": "Dressing: Quark, Olivenöl, Zitrone, Dill, Knoblauch, Salz. Hähnchen mit Oregano, Knoblauch, Zitrone im Ofen.", "kurz": "Griechischer Salat"}, {"id": "abend-burger-bowl", "name": "Burger-Bowl mit Ofenkartoffeln", "typ": "abend", "portionen": 5, "makros": {"kcal": 1135, "protein": 84, "fett": 49}, "zutaten": [["hack", 200], ["zwiebel", 40], ["kartoffeln", 400], ["oel", 4], ["eisberg", 100], ["tomate", 80], ["gewuerzgurken", 2], ["reibekaese", 40], ["magerquark", 200], ["ketchup", 0], ["senf", 0], ["gewuerze", 0]], "hinweis": "Pro Abend: 200 g Hack mit Zwiebel anbraten, 400 g Kartoffelwürfel 30 min bei 220 °C (oder Heißluftfritteuse). Burgersoße: Quark, 1 EL Ketchup, 1 TL Senf, Gurkenwasser, Paprika.", "kurz": "Burger-Bowl"}, {"id": "salat-thunfisch-ei", "name": "Thunfisch-Ei-Salat mit Bohnen", "typ": "salat", "portionen": 5, "makros": {"kcal": 770, "protein": 95, "fett": 21}, "zutaten": [["thunfisch", 170], ["eier", 3], ["eisberg", 150], ["cocktailtomaten", 100], ["joghurt", 100], ["magerquark", 125], ["kidneybohnen", 130], ["gurke", 200], ["senf", 0], ["essig", 0]], "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark und 200 g Gurke fürs Wochenende.", "kurz": "Thunfisch-Ei-Salat"}, {"id": "abend-curry", "name": "Hähnchen-Curry mit Reis", "typ": "abend", "portionen": 5, "makros": {"kcal": 1110, "protein": 91, "fett": 22}, "zutaten": [["tk_brokkoli", 100], ["rote_zwiebel", 50], ["passierte_tomaten", 100], ["tk_erbsen", 80], ["kokosmilch_light", 130], ["haehnchen", 300], ["reis", 135], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren. Von der 2. Dose bleiben ca. 150 ml übrig.", "kurz": "Curry"}, {"id": "salat-asia", "name": "Asia-Gurkensalat mit Hähnchen und Erdnuss-Dressing", "typ": "salat", "portionen": 5, "makros": {"kcal": 625, "protein": 70, "fett": 21}, "zutaten": [["gurke", 320], ["karotte", 120], ["chinakohl", 160], ["fruehlingszwiebel", 0.2], ["haehnchen", 200], ["tk_edamame", 100], ["erdnussmus", 25], ["sojasauce", 0], ["limette", 0.4], ["honig", 0], ["knoblauch", 1], ["essig", 0]], "hinweis": "Dressing ohne Milchprodukte, für die ganze Woche in einem Glas anrühren. Hähnchen in Sojasauce, Knoblauch, Honig marinieren.", "kurz": "Asia-Salat"}, {"id": "abend-bolognese", "name": "Pasta Bolognese mit Linsen", "typ": "abend", "portionen": 5, "makros": {"kcal": 1350, "protein": 99, "fett": 47}, "zutaten": [["hack", 200], ["rote_linsen", 50], ["passierte_tomaten", 300], ["zwiebel", 40], ["karotte", 80], ["tomatenmark", 0], ["magerquark", 200], ["vollkornnudeln", 100], ["parmesan", 20], ["knoblauch", 1], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 25 min: Hack anbraten, Zwiebel, Karotte, Tomaten und Linsen (+ 70 ml Wasser) 15 min köcheln, Nudeln parallel. Quark zum Schluss einrühren. Tipp: die Soße für 2 Abende auf einmal kochen.", "kurz": "Bolognese"}, {"id": "salat-mexiko", "name": "Mexiko-Salat mit Taco-Hähnchen", "typ": "salat", "portionen": 5, "makros": {"kcal": 895, "protein": 97, "fett": 32}, "zutaten": [["roemersalat", 160], ["gurke", 190], ["paprika", 90], ["haehnchen", 200], ["oel", 20], ["kidneybohnen", 104], ["mais", 57], ["reibekaese", 40], ["magerquark", 200], ["tomate", 100], ["limette", 0.2], ["gewuerze", 0]], "hinweis": "Dressing: Quark, Limette, Kreuzkümmel, Salz, Chili. Die Tomate kommt gewürfelt in den Salat.", "kurz": "Mexiko-Salat"}, {"id": "abend-gyros", "name": "Gyros-Reispfanne mit Tzatziki", "typ": "abend", "portionen": 5, "makros": {"kcal": 1130, "protein": 99, "fett": 32}, "zutaten": [["pute", 200], ["oel", 10], ["paprika", 90], ["zwiebel", 60], ["reis", 100], ["feta", 80], ["magerquark", 200], ["joghurt", 100], ["gurke", 50], ["knoblauch", 1], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki aus Quark, Joghurt, Gurke und Knoblauch alle 2–3 Tage frisch anrühren.", "kurz": "Gyros"}], "rotation": [{"woche": 1, "salat": "salat-griechisch", "abend": "abend-burger-bowl", "prep_minuten": 35, "prep": ["Ofen auf 200 °C. Hähnchen (1 kg) mit Oregano, Knoblauch und Zitrone würzen, 20–25 min garen.", "Kichererbsen abtropfen, Feta zerbröseln.", "Abfüllen: 5 × Hähnchen + Kichererbsen + Feta, die Portionen für Do und Fr einfrieren.", "Dressing für Mo und Di anrühren (Quark, Olivenöl, Zitrone, Dill, Knoblauch).", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Gemüse für heute schneiden und die Box für 15 Uhr fertig machen."]}, {"woche": 2, "salat": "salat-thunfisch-ei", "abend": "abend-curry", "prep_minuten": 30, "prep": ["15 Eier hart kochen (10 min), abschrecken, ungeschält in den Kühlschrank.", "Kidneybohnen abtropfen, in eine Box.", "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Essig).", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}, {"woche": 3, "salat": "salat-asia", "abend": "abend-bolognese", "prep_minuten": 35, "prep": ["Hähnchen (1 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.", "Erdnuss-Dressing für die ganze Woche in einem Glas anrühren, Karotten raspeln, Edamame auftauen.", "Abfüllen: 5 × Hähnchen + Edamame, die Portionen für Do und Fr einfrieren.", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}, {"woche": 4, "salat": "salat-mexiko", "abend": "abend-gyros", "prep_minuten": 30, "prep": ["Hähnchen (1 kg) mit Taco-Gewürz in 1 EL Öl braten.", "Bohnen und Mais abtropfen.", "Abfüllen: 5 × Hähnchen, die Portionen für Do und Fr einfrieren.", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}], "salat_regeln": ["Am Montagmorgen nur Protein und haltbare Teile für die Woche vorbereiten.", "Gemüse jeweils am Vorabend schneiden (5–7 min), Dressing in ein Extra-Döschen.", "Salat-Protein für Do und Fr einfrieren und am Vorabend in den Kühlschrank legen."], "rhythmus": {"einkauf": "Montagmorgen", "prep": "Montagmorgen (Homeoffice)"}};
@@ -292,6 +308,44 @@ function viewRezepte(){
 }
 
 
+// Habits: Liste der Gewohnheiten und pro Tag, was erledigt ist. Alles lokal im Browser.
+const HSTART = ["Bett machen", "Zähne putzen morgens", "Duschen", "Kalorien getrackt", "Zähne putzen abends", "Tagebuch schreiben"];
+const esc = t => String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const dayKey = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const shift = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const habits = () => store.get("habits", null) || HSTART.map((name, i) => ({ id: "h" + i, name }));
+const hlog = () => store.get("habitlog", {});
+let habitEdit = false;
+
+function streak(id, log){
+  const today = new Date();
+  let d = log[dayKey(today)]?.[id] ? today : shift(today, -1), n = 0;
+  while (log[dayKey(d)]?.[id]){ n++; d = shift(d, -1); }
+  return n;
+}
+
+function viewHabits(){
+  const list = habits(), log = hlog(), now = new Date(), today = log[dayKey(now)] || {};
+  const done = list.filter(h => today[h.id]).length;
+  const datum = now.toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long" });
+  if (habitEdit) return `<div class="section">
+    <div class="bar"><h3>Gewohnheiten bearbeiten</h3><button class="reset" id="habitDone">Fertig</button></div>
+    ${list.length ? `<div class="group">${list.map(h => `<div class="edit-row"><input value="${esc(h.name)}" data-rename="${h.id}" aria-label="Name"><button class="del" data-del="${h.id}">Löschen</button></div>`).join("")}</div>` : ""}
+    <form class="add" id="habitAdd"><input id="habitNew" placeholder="Neue Gewohnheit" maxlength="60" aria-label="Neue Gewohnheit"><button>Hinzufügen</button></form>
+    <p class="note">Löschen entfernt auch die bisherigen Häkchen dieser Gewohnheit aus der Streak.</p>
+  </div>`;
+  return `<div class="section">
+    <div><h1 class="hello">${datum}</h1><p class="lead">${list.length ? `${done} von ${list.length} erledigt` : "Noch keine Gewohnheiten angelegt."}</p></div>
+    <div class="bar"><div class="progress" style="flex:1"><span style="width:${list.length ? done / list.length * 100 : 0}%"></span></div><button class="reset" id="habitEdit">Bearbeiten</button></div>
+    ${list.length ? `<div class="group">${list.map(h => {
+      const s = streak(h.id, log);
+      const dots = [6, 5, 4, 3, 2, 1, 0].map(n => `<i class="${log[dayKey(shift(now, -n))]?.[h.id] ? "on" : ""}"></i>`).join("");
+      return `<label class="item habit ${today[h.id] ? "done" : ""}"><input type="checkbox" data-h="${h.id}" ${today[h.id] ? "checked" : ""}><span class="what">${esc(h.name)}<span class="dots" aria-label="Letzte 7 Tage">${dots}</span></span><span class="streak">${s}<small>${s === 1 ? "Tag" : "Tage"} am Stück</small></span></label>`;
+    }).join("")}</div>` : `<button class="reset" id="habitEdit2">Gewohnheit anlegen</button>`}
+    <p class="note">Die Punkte zeigen die letzten 7 Tage, rechts ist heute. Die Streak zählt, solange du keinen Tag auslässt. Gespeichert wird nur auf diesem Gerät.</p>
+  </div>`;
+}
+
 function openMenu(open){
   document.getElementById("drawer").hidden = !open;
   document.getElementById("scrim").hidden = !open;
@@ -306,7 +360,7 @@ function render(){
   document.getElementById("dFree").setAttribute("aria-current", state.wahl === "frei");
   document.getElementById("freePick").hidden = state.wahl !== "frei";
   document.querySelectorAll(".switch button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
-  document.getElementById("view").innerHTML = { woche: viewWoche, einkauf: viewEinkauf, prep: viewPrep, rezepte: viewRezepte }[state.tab]();
+  document.getElementById("view").innerHTML = { woche: viewWoche, einkauf: viewEinkauf, prep: viewPrep, rezepte: viewRezepte, habits: viewHabits }[state.tab]();
 }
 
 const opt = (list, sel) => list.map(r => `<option value="${r.id}" ${r.id === sel ? "selected" : ""}>${r.name}</option>`).join("");
@@ -325,11 +379,47 @@ document.addEventListener("click", e => {
   const c = e.target.closest("[data-copy]");
   if (c){ const txt = c.dataset.copy; const ok = () => { c.textContent = "Kopiert"; setTimeout(() => c.textContent = "Kopieren", 1500); };
     try { navigator.clipboard.writeText(txt).then(ok, () => { c.textContent = txt; }); } catch { c.textContent = txt; } return; }
+  if (e.target.id === "habitEdit" || e.target.id === "habitEdit2"){ habitEdit = true; render(); return; }
+  if (e.target.id === "habitDone"){ habitEdit = false; render(); return; }
+  const del = e.target.closest("[data-del]");
+  if (del){
+    const h = habits().find(x => x.id === del.dataset.del);
+    if (h && confirm(`„${h.name}“ löschen?`)){
+      store.set("habits", habits().filter(x => x.id !== h.id));
+      const log = hlog(); for (const d in log) delete log[d][h.id]; store.set("habitlog", log);
+      render();
+    }
+    return;
+  }
   if (e.target.id === "reset"){ store.set("checks:" + key(), {}); render(); }
   if (e.target.id === "resetPrep"){ store.set("prep:" + key(), {}); render(); }
 });
 document.addEventListener("keydown", e => { if (e.key === "Escape") openMenu(false); });
+document.addEventListener("submit", e => {
+  if (e.target.id !== "habitAdd") return;
+  e.preventDefault();
+  const name = document.getElementById("habitNew").value.trim();
+  if (!name) return;
+  store.set("habits", [...habits(), { id: "h" + Date.now().toString(36), name }]);
+  render();
+  document.getElementById("habitNew").focus();
+});
 document.addEventListener("change", e => {
+  if (e.target.dataset && e.target.dataset.rename){
+    const name = e.target.value.trim();
+    if (name) store.set("habits", habits().map(h => h.id === e.target.dataset.rename ? { ...h, name } : h));
+    else e.target.value = habits().find(h => h.id === e.target.dataset.rename)?.name || "";
+    return;
+  }
+  if (e.target.dataset && e.target.dataset.h){
+    const log = hlog(), d = dayKey(new Date());
+    log[d] = log[d] || {};
+    if (e.target.checked) log[d][e.target.dataset.h] = true; else delete log[d][e.target.dataset.h];
+    if (!Object.keys(log[d]).length) delete log[d];
+    store.set("habitlog", log);
+    render();
+    return;
+  }
   const k = e.target.dataset && (e.target.dataset.k ?? e.target.dataset.p);
   if (k === undefined) return;
   const bucket = (e.target.dataset.k !== undefined ? "checks:" : "prep:") + key();
