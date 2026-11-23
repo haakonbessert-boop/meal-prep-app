@@ -1,547 +1,331 @@
 {
- "_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden; Woche 2 folgt exakt Haakons Tracking-App (21.10.). Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.",
+ "_info": "Reis-Plan ab 23.11.2026 (Quelle: Second Brain, Fitness & Ernährung/Ernährung/Reis-Plan Beispielwoche). Mengen pro Portion in g (Knoblauch in Zehen). Makros rechnet die App aus zutaten.json. Ganze Packungen: alles Frische und TK ist am Sonntag aufgebraucht, nur Vorrat bleibt.",
  "ziele": {
   "kcal_tag": 2000,
-  "protein_tag": 160,
-  "fett_min_tag": 60,
+  "protein_tag": 165,
+  "fett_tag": 60,
   "kcal_woche": 14000
  },
  "rezepte": [
   {
-   "id": "salat-griechisch",
-   "name": "Griechischer Gurkensalat mit Hähnchen",
-   "typ": "salat",
-   "portionen": 5,
-   "makros": {
-    "kcal": 740,
-    "protein": 88,
-    "fett": 24
-   },
+   "id": "A",
+   "name": "Knoblauch-Soja-Hähnchen mit Brokkoli",
+   "kurz": "Knoblauch-Hähnchen",
+   "portionen": 4,
    "zutaten": [
-    [
-     "gurke",
-     320
-    ],
-    [
-     "tomate",
-     120
-    ],
-    [
-     "rote_zwiebel",
-     32
-    ],
     [
      "haehnchen",
-     200
+     250
     ],
     [
-     "kichererbsen",
-     96
+     "brokkoli",
+     250
     ],
     [
-     "feta",
-     40
-    ],
-    [
-     "magerquark",
-     200
-    ],
-    [
-     "oel",
-     10
-    ],
-    [
-     "zitrone",
-     0.2
-    ],
-    [
-     "knoblauch",
-     1
-    ],
-    [
-     "dill",
-     0
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Dressing: Quark, Olivenöl, Zitrone, Dill, Knoblauch, Salz. Hähnchen mit Oregano, Knoblauch, Zitrone im Ofen.",
-   "kurz": "Griechischer Salat"
-  },
-  {
-   "id": "abend-burger-bowl",
-   "name": "Burger-Bowl mit Ofenkartoffeln",
-   "typ": "abend",
-   "portionen": 5,
-   "makros": {
-    "kcal": 1135,
-    "protein": 84,
-    "fett": 49
-   },
-   "zutaten": [
-    [
-     "hack",
-     200
-    ],
-    [
-     "zwiebel",
-     40
-    ],
-    [
-     "kartoffeln",
-     400
-    ],
-    [
-     "oel",
-     4
-    ],
-    [
-     "eisberg",
-     100
-    ],
-    [
-     "tomate",
+     "reis",
      80
     ],
     [
-     "gewuerzgurken",
-     2
+     "rapsoel",
+     12
     ],
     [
-     "reibekaese",
-     40
+     "soja",
+     15
     ],
     [
-     "magerquark",
-     200
-    ],
-    [
-     "ketchup",
-     0
-    ],
-    [
-     "senf",
-     0
+     "knoblauch",
+     0.75
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Pro Abend: 200 g Hack mit Zwiebel anbraten, 400 g Kartoffelwürfel 30 min bei 220 °C (oder Heißluftfritteuse). Burgersoße: Quark, 1 EL Ketchup, 1 TL Senf, Gurkenwasser, Paprika.",
-   "kurz": "Burger-Bowl"
+   "hinweis": "Hähnchen scharf anbraten, Knoblauch und Sojasauce dazu, Brokkoli dämpfen und untermischen. Pfeffer, Chili."
   },
   {
-   "id": "salat-thunfisch-ei",
-   "name": "Thunfisch-Ei-Salat mit Bohnen",
-   "typ": "salat",
-   "portionen": 5,
-   "makros": {
-    "kcal": 770,
-    "protein": 95,
-    "fett": 21
-   },
+   "id": "B",
+   "name": "Chili con Carne mit Reis",
+   "kurz": "Chili",
+   "portionen": 3,
    "zutaten": [
     [
-     "thunfisch",
-     170
+     "rinderhack",
+     166.66666666666666
     ],
     [
-     "eier",
-     3
+     "kidney",
+     80
     ],
     [
-     "eisberg",
+     "passata",
+     166.66666666666666
+    ],
+    [
+     "paprika",
      150
     ],
     [
-     "cocktailtomaten",
-     100
-    ],
-    [
-     "joghurt",
-     100
-    ],
-    [
-     "magerquark",
-     125
-    ],
-    [
-     "kidneybohnen",
-     130
-    ],
-    [
-     "gurke",
-     200
-    ],
-    [
-     "senf",
-     0
-    ],
-    [
-     "essig",
-     0
-    ]
-   ],
-   "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark und 200 g Gurke fürs Wochenende.",
-   "kurz": "Thunfisch-Ei-Salat"
-  },
-  {
-   "id": "abend-curry",
-   "name": "Hähnchen-Curry mit Reis",
-   "typ": "abend",
-   "portionen": 5,
-   "makros": {
-    "kcal": 1110,
-    "protein": 91,
-    "fett": 22
-   },
-   "zutaten": [
-    [
-     "tk_brokkoli",
-     100
-    ],
-    [
-     "rote_zwiebel",
+     "zwiebel",
      50
     ],
     [
-     "passierte_tomaten",
-     100
-    ],
-    [
-     "tk_erbsen",
-     80
-    ],
-    [
-     "kokosmilch_light",
-     130
-    ],
-    [
-     "haehnchen",
-     300
-    ],
-    [
-     "reis",
-     135
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren. Von der 2. Dose bleiben ca. 150 ml übrig.",
-   "kurz": "Curry"
-  },
-  {
-   "id": "salat-asia",
-   "name": "Asia-Gurkensalat mit Hähnchen und Erdnuss-Dressing",
-   "typ": "salat",
-   "portionen": 5,
-   "makros": {
-    "kcal": 625,
-    "protein": 70,
-    "fett": 21
-   },
-   "zutaten": [
-    [
-     "gurke",
-     320
-    ],
-    [
-     "karotte",
-     120
-    ],
-    [
-     "chinakohl",
-     160
-    ],
-    [
-     "fruehlingszwiebel",
-     0.2
-    ],
-    [
-     "haehnchen",
-     200
-    ],
-    [
-     "tk_edamame",
-     100
-    ],
-    [
-     "erdnussmus",
+     "linsen",
      25
     ],
     [
-     "sojasauce",
-     0
-    ],
-    [
-     "limette",
-     0.4
-    ],
-    [
-     "honig",
-     0
-    ],
-    [
-     "knoblauch",
-     1
-    ],
-    [
-     "essig",
-     0
-    ]
-   ],
-   "hinweis": "Dressing ohne Milchprodukte, für die ganze Woche in einem Glas anrühren. Hähnchen in Sojasauce, Knoblauch, Honig marinieren.",
-   "kurz": "Asia-Salat"
-  },
-  {
-   "id": "abend-bolognese",
-   "name": "Pasta Bolognese mit Linsen",
-   "typ": "abend",
-   "portionen": 5,
-   "makros": {
-    "kcal": 1350,
-    "protein": 99,
-    "fett": 47
-   },
-   "zutaten": [
-    [
-     "hack",
-     200
-    ],
-    [
-     "rote_linsen",
-     50
-    ],
-    [
-     "passierte_tomaten",
-     300
-    ],
-    [
-     "zwiebel",
-     40
-    ],
-    [
-     "karotte",
-     80
-    ],
-    [
      "tomatenmark",
-     0
+     15
     ],
     [
-     "magerquark",
-     200
-    ],
-    [
-     "vollkornnudeln",
-     100
-    ],
-    [
-     "parmesan",
-     20
-    ],
-    [
-     "knoblauch",
-     1
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Pro Abend ca. 25 min: Hack anbraten, Zwiebel, Karotte, Tomaten und Linsen (+ 70 ml Wasser) 15 min köcheln, Nudeln parallel. Quark zum Schluss einrühren. Tipp: die Soße für 2 Abende auf einmal kochen.",
-   "kurz": "Bolognese"
-  },
-  {
-   "id": "salat-mexiko",
-   "name": "Mexiko-Salat mit Taco-Hähnchen",
-   "typ": "salat",
-   "portionen": 5,
-   "makros": {
-    "kcal": 895,
-    "protein": 97,
-    "fett": 32
-   },
-   "zutaten": [
-    [
-     "roemersalat",
-     160
-    ],
-    [
-     "gurke",
-     190
-    ],
-    [
-     "paprika",
-     90
-    ],
-    [
-     "haehnchen",
-     200
-    ],
-    [
-     "oel",
-     20
-    ],
-    [
-     "kidneybohnen",
-     104
-    ],
-    [
-     "mais",
-     57
-    ],
-    [
-     "reibekaese",
-     40
-    ],
-    [
-     "magerquark",
-     200
-    ],
-    [
-     "tomate",
-     100
-    ],
-    [
-     "limette",
-     0.2
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Dressing: Quark, Limette, Kreuzkümmel, Salz, Chili. Die Tomate kommt gewürfelt in den Salat.",
-   "kurz": "Mexiko-Salat"
-  },
-  {
-   "id": "abend-gyros",
-   "name": "Gyros-Reispfanne mit Tzatziki",
-   "typ": "abend",
-   "portionen": 5,
-   "makros": {
-    "kcal": 1130,
-    "protein": 99,
-    "fett": 32
-   },
-   "zutaten": [
-    [
-     "pute",
-     200
-    ],
-    [
-     "oel",
-     10
-    ],
-    [
-     "paprika",
-     90
-    ],
-    [
-     "zwiebel",
-     60
+     "rapsoel",
+     7
     ],
     [
      "reis",
-     100
-    ],
-    [
-     "feta",
-     80
-    ],
-    [
-     "magerquark",
-     200
-    ],
-    [
-     "joghurt",
-     100
-    ],
-    [
-     "gurke",
-     50
-    ],
-    [
-     "knoblauch",
-     1
+     70
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki aus Quark, Joghurt, Gurke und Knoblauch alle 2–3 Tage frisch anrühren.",
-   "kurz": "Gyros"
+   "hinweis": "Hack und Zwiebel anbraten, Tomatenmark kurz mitrösten, Paprika, passierte Tomaten, Kidneybohnen (abgespült), rote Linsen und ca. 250 ml Wasser dazu. Chili, Paprikapulver, Kreuzkümmel, Salz. 20 min köcheln."
+  },
+  {
+   "id": "C",
+   "name": "Erdnuss-Curry mit Hähnchen, Edamame, Erbsen und Brokkoli",
+   "kurz": "Erdnuss-Curry",
+   "portionen": 4,
+   "zutaten": [
+    [
+     "haehnchen",
+     250
+    ],
+    [
+     "brokkoli",
+     250
+    ],
+    [
+     "edamame",
+     100
+    ],
+    [
+     "erbsen",
+     125
+    ],
+    [
+     "erdnussmus",
+     15
+    ],
+    [
+     "soja",
+     15
+    ],
+    [
+     "zwiebel",
+     40
+    ],
+    [
+     "rapsoel",
+     5
+    ],
+    [
+     "reis",
+     55
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Zwiebel und Hähnchen anbraten, 2 EL Currypulver dazu. Erdnussmus, Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli, Edamame und Erbsen rein, 10 min köcheln."
+  },
+  {
+   "id": "D",
+   "name": "Balkan-Reispfanne mit Rinderhack (Djuvec-Art)",
+   "kurz": "Balkan-Reispfanne",
+   "portionen": 3,
+   "zutaten": [
+    [
+     "rinderhack",
+     166.66666666666666
+    ],
+    [
+     "erbsen",
+     166.66666666666666
+    ],
+    [
+     "passata",
+     166.66666666666666
+    ],
+    [
+     "paprika",
+     150
+    ],
+    [
+     "zwiebel",
+     50
+    ],
+    [
+     "tomatenmark",
+     15
+    ],
+    [
+     "rapsoel",
+     5
+    ],
+    [
+     "reis",
+     65
+    ],
+    [
+     "knoblauch",
+     0.67
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Hack und Zwiebel anbraten, Tomatenmark, Paprikapulver edelsüß und Knoblauch dazu, Paprika, passierte Tomaten und Erbsen rein, 15 min köcheln. Mit dem Reis mischen."
+  },
+  {
+   "id": "Q1",
+   "name": "Quark-Nachtisch (⅔ Becher)",
+   "kurz": "Quark ⅔ Becher",
+   "portionen": 3,
+   "zutaten": [
+    [
+     "magerquark",
+     333.3333333333333
+    ],
+    [
+     "leinsamen",
+     15
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."
+  },
+  {
+   "id": "Q2",
+   "name": "Quark-Nachtisch (½ Becher)",
+   "kurz": "Quark ½ Becher",
+   "portionen": 4,
+   "zutaten": [
+    [
+     "magerquark",
+     250
+    ],
+    [
+     "leinsamen",
+     15
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."
   }
  ],
- "rotation": [
+ "sessions": [
   {
-   "woche": 1,
-   "salat": "salat-griechisch",
-   "abend": "abend-burger-bowl",
-   "prep_minuten": 35,
+   "id": "mo",
+   "name": "Montag",
+   "wann": "morgens im Homeoffice",
+   "deckt": "Mo mittags bis Do mittags",
+   "rezepte": [
+    "A",
+    "B",
+    "Q1"
+   ],
+   "minuten": 60,
    "prep": [
-    "Ofen auf 200 °C. Hähnchen (1 kg) mit Oregano, Knoblauch und Zitrone würzen, 20–25 min garen.",
-    "Kichererbsen abtropfen, Feta zerbröseln.",
-    "Abfüllen: 5 × Hähnchen + Kichererbsen + Feta, die Portionen für Do und Fr einfrieren.",
-    "Dressing für Mo und Di anrühren (Quark, Olivenöl, Zitrone, Dill, Knoblauch).",
-    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
-    "Gemüse für heute schneiden und die Box für 15 Uhr fertig machen."
+    "Reis 530 g (für Hähnchen und Chili) mit doppelter Menge Wasser aufsetzen.",
+    "Chili: Zwiebel und Hack in 2 EL Öl anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.",
+    "Hähnchen (1 kg) würfeln und in 5 EL Öl in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.",
+    "Brokkoli (1 kg) dämpfen oder in der Pfanne mitgaren und unter das Hähnchen mischen.",
+    "Reis flach ausbreiten und schnell abkühlen lassen.",
+    "Abfüllen: 4 Boxen Hähnchen mit je ca. 240 g gekochtem Reis, 3 Boxen Chili mit je ca. 210 g.",
+    "Do-Box Hähnchen einfrieren, Mi abends in den Kühlschrank legen. Der Rest kommt in den Kühlschrank."
    ]
   },
   {
-   "woche": 2,
-   "salat": "salat-thunfisch-ei",
-   "abend": "abend-curry",
-   "prep_minuten": 30,
+   "id": "do",
+   "name": "Donnerstag",
+   "wann": "abends nach dem Einkauf",
+   "deckt": "Do abends bis So abends",
+   "rezepte": [
+    "C",
+    "D",
+    "Q2"
+   ],
+   "minuten": 60,
    "prep": [
-    "15 Eier hart kochen (10 min), abschrecken, ungeschält in den Kühlschrank.",
-    "Kidneybohnen abtropfen, in eine Box.",
-    "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Essig).",
-    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
-    "Salat für heute fertig machen, Box für 15 Uhr."
-   ]
-  },
-  {
-   "woche": 3,
-   "salat": "salat-asia",
-   "abend": "abend-bolognese",
-   "prep_minuten": 35,
-   "prep": [
-    "Hähnchen (1 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.",
-    "Erdnuss-Dressing für die ganze Woche in einem Glas anrühren, Karotten raspeln, Edamame auftauen.",
-    "Abfüllen: 5 × Hähnchen + Edamame, die Portionen für Do und Fr einfrieren.",
-    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
-    "Salat für heute fertig machen, Box für 15 Uhr."
-   ]
-  },
-  {
-   "woche": 4,
-   "salat": "salat-mexiko",
-   "abend": "abend-gyros",
-   "prep_minuten": 30,
-   "prep": [
-    "Hähnchen (1 kg) mit Taco-Gewürz in 1 EL Öl braten.",
-    "Bohnen und Mais abtropfen.",
-    "Abfüllen: 5 × Hähnchen, die Portionen für Do und Fr einfrieren.",
-    "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.",
-    "Salat für heute fertig machen, Box für 15 Uhr."
+    "Reis 415 g (für Curry und Balkan-Pfanne) mit doppelter Menge Wasser aufsetzen.",
+    "Balkan-Pfanne: Zwiebel und Hack in 1,5 EL Öl anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.",
+    "Curry: Zwiebel und Hähnchen (1 kg) in 2 EL Öl anbraten, 2 EL Currypulver. 60 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.",
+    "Reis flach ausbreiten und schnell abkühlen lassen.",
+    "Abfüllen: 4 Boxen Curry mit je ca. 165 g gekochtem Reis, 3 Boxen Balkan-Pfanne mit je ca. 195 g. Eine Curry-Box gleich essen.",
+    "So-Boxen (1 Curry, 1 Balkan-Pfanne) einfrieren, Sa abends in den Kühlschrank legen."
    ]
   }
  ],
- "salat_regeln": [
-  "Am Montagmorgen nur Protein und haltbare Teile für die Woche vorbereiten.",
-  "Gemüse jeweils am Vorabend schneiden (5–7 min), Dressing in ein Extra-Döschen.",
-  "Salat-Protein für Do und Fr einfrieren und am Vorabend in den Kühlschrank legen."
+ "tage": [
+  {
+   "tag": "Mo",
+   "mittag": "A",
+   "abend": "B",
+   "quark": "Q1"
+  },
+  {
+   "tag": "Di",
+   "mittag": "A",
+   "abend": "B",
+   "quark": "Q1"
+  },
+  {
+   "tag": "Mi",
+   "mittag": "A",
+   "abend": "B",
+   "quark": "Q1"
+  },
+  {
+   "tag": "Do",
+   "mittag": "A",
+   "abend": "C",
+   "quark": "Q2"
+  },
+  {
+   "tag": "Fr",
+   "mittag": "D",
+   "abend": "C",
+   "quark": "Q2"
+  },
+  {
+   "tag": "Sa",
+   "mittag": "D",
+   "abend": "C",
+   "quark": "Q2"
+  },
+  {
+   "tag": "So",
+   "mittag": "D",
+   "abend": "C",
+   "quark": "Q2"
+  }
  ],
- "rhythmus": {
-  "einkauf": "Montagmorgen",
-  "prep": "Montagmorgen (Homeoffice)"
- }
+ "regeln": [
+  "Gekochtes hält 3–4 Tage im Kühlschrank. Die letzte Box jeder Session einfrieren.",
+  "Reis nach dem Kochen flach ausbreiten, schnell abkühlen lassen und gleich in den Kühlschrank.",
+  "Gefrorene Box immer am Vorabend in den Kühlschrank legen.",
+  "Kalzium ist knapp: täglich ca. 1 l kalziumreiches Mineralwasser (ab 250 mg/l) trinken.",
+  "Packung im Markt anders groß? Packung durch die Anzahl Boxen teilen."
+ ]
 }

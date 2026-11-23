@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
 <style>html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}body{margin:0}img{max-width:100%}</style>
-<title>Meal Prep Woche</title>
+<title>Meal Prep</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
@@ -140,14 +140,17 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
 .ing{display:grid;grid-template-columns:1fr auto auto;gap:3px 14px;font-size:.9rem}
 .ing span:nth-child(3n+2),.ing span:nth-child(3n){text-align:right;font-family:var(--mono);font-size:.84rem}
 .ing .h{font:500 .72rem var(--sans)!important;color:var(--muted)}
+.switch.two{grid-template-columns:repeat(2,1fr)}
+.days td{vertical-align:top}
+.days td small{display:block;font:.78rem var(--sans);color:var(--muted);white-space:normal}
+.cost{display:flex;justify-content:space-between;font:500 .9rem var(--mono);padding:12px 14px;border-top:1px solid var(--line)}
 </style>
 
 </head>
 <body>
 <header class="top"><div class="top-in">
   <div class="bar">
-    <button class="icon-btn" id="openMenu" aria-label="Woche wählen"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 5.5h14M3 10h14M3 14.5h9"/></svg></button>
-    <button class="week-btn" id="weekBtn"><b id="wTitle"></b><span id="wSub"></span></button>
+    <div class="week-btn" style="cursor:default"><b>Reis-Plan</b><span>Einkauf und Kochen Mo und Do</span></div>
     <span class="kw" id="kw"></span>
   </div>
   <div class="switch" role="tablist" aria-label="Ansicht">
@@ -158,204 +161,170 @@ ul.plain{margin:0;padding-left:1.2em;display:grid;gap:4px}
   </div>
 </div></header>
 
-<div class="scrim" id="scrim" hidden></div>
-<aside class="drawer" id="drawer" hidden aria-label="Wochen">
-  <div class="drawer-head"><h2>Meal Prep</h2><button class="icon-btn" id="closeMenu" aria-label="Schließen"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div>
-  <div class="d-label">Rotation</div>
-  <div id="dWeeks" style="display:grid;gap:2px"></div>
-  <div class="d-label">Eigene Kombination</div>
-  <button class="d-item" data-w="frei" id="dFree"><b>Frei wählen</b><span>Salat und Abendessen selbst kombinieren</span></button>
-  <div class="free" id="freePick" hidden>
-    <label for="selSalat">Salat (15 Uhr, 5 Portionen)<select id="selSalat"></select></label>
-    <label for="selAbend">Abendessen (5 Portionen)<select id="selAbend"></select></label>
-  </div>
-</aside>
-
 <main class="wrap" id="view"></main>
-<footer class="ver">Version 0.10.2</footer>
+<footer class="ver">Version 0.11.0</footer>
 
 <script>
-const REZ = {"_info": "Mengen pro Portion in der Basiseinheit der Zutat (g bzw. ml; bei Zitrone, Limette, Eier, Knoblauch-Zehen, Bund in Stück). Makros pro Portion werden aus den Nährwerten in zutaten.json berechnet (Standardwerte). Mengen so gewählt, dass frische Zutaten in ganzen Packungen gekauft und Mo–Fr aufgebraucht werden; Woche 2 folgt exakt Haakons Tracking-App (21.10.). Quelle: Second Brain, Stand 2026-10-20, Salat und Abendessen je 5 Portionen (Mo–Fr), keine Montags-Box. Montag Homeoffice: morgens Einkauf + Salat-Prep, Abendessen jeden Abend frisch.", "ziele": {"kcal_tag": 2000, "protein_tag": 160, "fett_min_tag": 60, "kcal_woche": 14000}, "rezepte": [{"id": "salat-griechisch", "name": "Griechischer Gurkensalat mit Hähnchen", "typ": "salat", "portionen": 5, "makros": {"kcal": 740, "protein": 88, "fett": 24}, "zutaten": [["gurke", 320], ["tomate", 120], ["rote_zwiebel", 32], ["haehnchen", 200], ["kichererbsen", 96], ["feta", 40], ["magerquark", 200], ["oel", 10], ["zitrone", 0.2], ["knoblauch", 1], ["dill", 0], ["gewuerze", 0]], "hinweis": "Dressing: Quark, Olivenöl, Zitrone, Dill, Knoblauch, Salz. Hähnchen mit Oregano, Knoblauch, Zitrone im Ofen.", "kurz": "Griechischer Salat"}, {"id": "abend-burger-bowl", "name": "Burger-Bowl mit Ofenkartoffeln", "typ": "abend", "portionen": 5, "makros": {"kcal": 1135, "protein": 84, "fett": 49}, "zutaten": [["hack", 200], ["zwiebel", 40], ["kartoffeln", 400], ["oel", 4], ["eisberg", 100], ["tomate", 80], ["gewuerzgurken", 2], ["reibekaese", 40], ["magerquark", 200], ["ketchup", 0], ["senf", 0], ["gewuerze", 0]], "hinweis": "Pro Abend: 200 g Hack mit Zwiebel anbraten, 400 g Kartoffelwürfel 30 min bei 220 °C (oder Heißluftfritteuse). Burgersoße: Quark, 1 EL Ketchup, 1 TL Senf, Gurkenwasser, Paprika.", "kurz": "Burger-Bowl"}, {"id": "salat-thunfisch-ei", "name": "Thunfisch-Ei-Salat mit Bohnen", "typ": "salat", "portionen": 5, "makros": {"kcal": 770, "protein": 95, "fett": 21}, "zutaten": [["thunfisch", 170], ["eier", 3], ["eisberg", 150], ["cocktailtomaten", 100], ["joghurt", 100], ["magerquark", 125], ["kidneybohnen", 130], ["gurke", 200], ["senf", 0], ["essig", 0]], "hinweis": "Dressing: Joghurt, Quark, Senf, Essig, Salz, Pfeffer. Eier ungeschält im Kühlschrank lagern. Das übrige Ei aus der 16er-Packung passt ins Wochenend-Rührei. Übrig bleiben ca. 375 g Quark und 200 g Gurke fürs Wochenende.", "kurz": "Thunfisch-Ei-Salat"}, {"id": "abend-curry", "name": "Hähnchen-Curry mit Reis", "typ": "abend", "portionen": 5, "makros": {"kcal": 1110, "protein": 91, "fett": 22}, "zutaten": [["tk_brokkoli", 100], ["rote_zwiebel", 50], ["passierte_tomaten", 100], ["tk_erbsen", 80], ["kokosmilch_light", 130], ["haehnchen", 300], ["reis", 135], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 25 min: Hähnchen anbraten, rote Zwiebel, Curry, Kokosmilch light, Tomaten, TK-Gemüse 10 min köcheln. Basmati-Reis parallel kochen. Offene Kokosmilch hält 3–4 Tage, den Rest für Do und Fr einfrieren. Von der 2. Dose bleiben ca. 150 ml übrig.", "kurz": "Curry"}, {"id": "salat-asia", "name": "Asia-Gurkensalat mit Hähnchen und Erdnuss-Dressing", "typ": "salat", "portionen": 5, "makros": {"kcal": 625, "protein": 70, "fett": 21}, "zutaten": [["gurke", 320], ["karotte", 120], ["chinakohl", 160], ["fruehlingszwiebel", 0.2], ["haehnchen", 200], ["tk_edamame", 100], ["erdnussmus", 25], ["sojasauce", 0], ["limette", 0.4], ["honig", 0], ["knoblauch", 1], ["essig", 0]], "hinweis": "Dressing ohne Milchprodukte, für die ganze Woche in einem Glas anrühren. Hähnchen in Sojasauce, Knoblauch, Honig marinieren.", "kurz": "Asia-Salat"}, {"id": "abend-bolognese", "name": "Pasta Bolognese mit Linsen", "typ": "abend", "portionen": 5, "makros": {"kcal": 1350, "protein": 99, "fett": 47}, "zutaten": [["hack", 200], ["rote_linsen", 50], ["passierte_tomaten", 300], ["zwiebel", 40], ["karotte", 80], ["tomatenmark", 0], ["magerquark", 200], ["vollkornnudeln", 100], ["parmesan", 20], ["knoblauch", 1], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 25 min: Hack anbraten, Zwiebel, Karotte, Tomaten und Linsen (+ 70 ml Wasser) 15 min köcheln, Nudeln parallel. Quark zum Schluss einrühren. Tipp: die Soße für 2 Abende auf einmal kochen.", "kurz": "Bolognese"}, {"id": "salat-mexiko", "name": "Mexiko-Salat mit Taco-Hähnchen", "typ": "salat", "portionen": 5, "makros": {"kcal": 895, "protein": 97, "fett": 32}, "zutaten": [["roemersalat", 160], ["gurke", 190], ["paprika", 90], ["haehnchen", 200], ["oel", 20], ["kidneybohnen", 104], ["mais", 57], ["reibekaese", 40], ["magerquark", 200], ["tomate", 100], ["limette", 0.2], ["gewuerze", 0]], "hinweis": "Dressing: Quark, Limette, Kreuzkümmel, Salz, Chili. Die Tomate kommt gewürfelt in den Salat.", "kurz": "Mexiko-Salat"}, {"id": "abend-gyros", "name": "Gyros-Reispfanne mit Tzatziki", "typ": "abend", "portionen": 5, "makros": {"kcal": 1130, "protein": 99, "fett": 32}, "zutaten": [["pute", 200], ["oel", 10], ["paprika", 90], ["zwiebel", 60], ["reis", 100], ["feta", 80], ["magerquark", 200], ["joghurt", 100], ["gurke", 50], ["knoblauch", 1], ["gewuerze", 0]], "hinweis": "Pro Abend ca. 20 min: Pute scharf anbraten, Paprika und Zwiebel dazu, Reis parallel. Tzatziki aus Quark, Joghurt, Gurke und Knoblauch alle 2–3 Tage frisch anrühren.", "kurz": "Gyros"}], "rotation": [{"woche": 1, "salat": "salat-griechisch", "abend": "abend-burger-bowl", "prep_minuten": 35, "prep": ["Ofen auf 200 °C. Hähnchen (1 kg) mit Oregano, Knoblauch und Zitrone würzen, 20–25 min garen.", "Kichererbsen abtropfen, Feta zerbröseln.", "Abfüllen: 5 × Hähnchen + Kichererbsen + Feta, die Portionen für Do und Fr einfrieren.", "Dressing für Mo und Di anrühren (Quark, Olivenöl, Zitrone, Dill, Knoblauch).", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Gemüse für heute schneiden und die Box für 15 Uhr fertig machen."]}, {"woche": 2, "salat": "salat-thunfisch-ei", "abend": "abend-curry", "prep_minuten": 30, "prep": ["15 Eier hart kochen (10 min), abschrecken, ungeschält in den Kühlschrank.", "Kidneybohnen abtropfen, in eine Box.", "Dressing für Mo und Di anrühren (Joghurt, Quark, Senf, Essig).", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}, {"woche": 3, "salat": "salat-asia", "abend": "abend-bolognese", "prep_minuten": 35, "prep": ["Hähnchen (1 kg) in Sojasauce, Knoblauch und Honig marinieren, 20–25 min bei 200 °C in den Ofen.", "Erdnuss-Dressing für die ganze Woche in einem Glas anrühren, Karotten raspeln, Edamame auftauen.", "Abfüllen: 5 × Hähnchen + Edamame, die Portionen für Do und Fr einfrieren.", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}, {"woche": 4, "salat": "salat-mexiko", "abend": "abend-gyros", "prep_minuten": 30, "prep": ["Hähnchen (1 kg) mit Taco-Gewürz in 1 EL Öl braten.", "Bohnen und Mais abtropfen.", "Abfüllen: 5 × Hähnchen, die Portionen für Do und Fr einfrieren.", "Fleisch fürs Abendessen direkt nach dem Einkauf in 5 Tagesportionen teilen: Mo und Di in den Kühlschrank, Mi–Fr einfrieren und jeweils am Vorabend in den Kühlschrank legen.", "Salat für heute fertig machen, Box für 15 Uhr."]}], "salat_regeln": ["Am Montagmorgen nur Protein und haltbare Teile für die Woche vorbereiten.", "Gemüse jeweils am Vorabend schneiden (5–7 min), Dressing in ein Extra-Döschen.", "Salat-Protein für Do und Fr einfrieren und am Vorabend in den Kühlschrank legen."], "rhythmus": {"einkauf": "Montagmorgen", "prep": "Montagmorgen (Homeoffice)"}};
-const ZUT = {"_info": "Zutaten-Stammdaten. abteilung = Kaufland-Bereich. packung = wie man es kauft (gramm/ml pro Einheit). vorrat = true: nicht in der Wochenliste, nur im Vorrat-Check. naehrwerte pro 100 g bzw. pro Stück/Bund. haltbar = true: Rest darf übrig bleiben (TK, Glas, Hartkäse, Eier).", "gurke": {"name": "Salatgurke", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 400}, "naehrwerte": {"basis": "100 g", "kcal": 14, "protein": 0.6, "fett": 0.1, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "tomate": {"name": "Tomaten", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Schale 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 18, "protein": 0.9, "fett": 0.2}}, "rote_zwiebel": {"name": "Rote Zwiebel", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 80}, "naehrwerte": {"basis": "100 g", "kcal": 42, "protein": 1.2, "fett": 0.1, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "zwiebel": {"name": "Zwiebel", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 100}, "naehrwerte": {"basis": "100 g", "kcal": 40, "protein": 1.1, "fett": 0.1}}, "knoblauch": {"name": "Knoblauch", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Knolle", "menge": 10}, "naehrwerte": {"basis": "Stück", "kcal": 4, "protein": 0.2, "fett": 0}, "haltbar": true}, "zitrone": {"name": "Zitrone", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 1}, "naehrwerte": {"basis": "Stück", "kcal": 8, "protein": 0.1, "fett": 0}}, "limette": {"name": "Limette", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 1}, "naehrwerte": {"basis": "Stück", "kcal": 6, "protein": 0.1, "fett": 0}}, "kartoffeln": {"name": "Kartoffeln, festkochend", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Netz 2 kg", "menge": 2000}, "naehrwerte": {"basis": "100 g", "kcal": 77, "protein": 2, "fett": 0.1}}, "eisberg": {"name": "Eisbergsalat", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 15, "protein": 1, "fett": 0.2, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "roemersalat": {"name": "Römersalatherzen", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Pck.", "menge": 200}, "naehrwerte": {"basis": "100 g", "kcal": 17, "protein": 1.2, "fett": 0.3}}, "chinakohl": {"name": "Chinakohl (oder ½ Weißkohl)", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 800}, "naehrwerte": {"basis": "100 g", "kcal": 13, "protein": 1.2, "fett": 0.2}}, "karotte": {"name": "Karotten", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Beutel 1 kg", "menge": 1000}, "naehrwerte": {"basis": "100 g", "kcal": 41, "protein": 0.9, "fett": 0.2}}, "fruehlingszwiebel": {"name": "Frühlingszwiebeln", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Bund", "menge": 1}, "naehrwerte": {"basis": "Bund", "kcal": 32, "protein": 1.8, "fett": 0.2}}, "paprika": {"name": "Paprika", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 180}, "naehrwerte": {"basis": "100 g", "kcal": 31, "protein": 1, "fett": 0.3}}, "haehnchen": {"name": "Hähnchenbrust frisch", "abteilung": "Kühltheke", "packung": {"einheit": "× 500 g", "menge": 500}, "tauschbar": "Pute, Hähnchen und Hack je nach Angebot", "naehrwerte": {"basis": "100 g", "kcal": 105, "protein": 23.5, "fett": 1.2, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "pute": {"name": "Putenbrust", "abteilung": "Kühltheke", "packung": {"einheit": "× 500 g", "menge": 500}, "tauschbar": "oder Hähnchen, je nach Angebot", "naehrwerte": {"basis": "100 g", "kcal": 107, "protein": 24, "fett": 1}}, "hack": {"name": "Hackfleisch gemischt (Angebot)", "abteilung": "Kühltheke", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 245, "protein": 19, "fett": 18.5}}, "magerquark": {"name": "Magerquark", "abteilung": "Kühltheke", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 68, "protein": 12, "fett": 0.3, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "joghurt": {"name": "Joghurt 1,5 %", "abteilung": "Kühltheke", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 61, "protein": 4, "fett": 1.5, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "feta": {"name": "Feta/Hirtenkäse", "abteilung": "Kühltheke", "packung": {"einheit": "× 200 g", "menge": 200}, "naehrwerte": {"basis": "100 g", "kcal": 260, "protein": 17, "fett": 21}}, "reibekaese": {"name": "Reibekäse light", "abteilung": "Kühltheke", "packung": {"einheit": "× 200 g", "menge": 200}, "naehrwerte": {"basis": "100 g", "kcal": 270, "protein": 29, "fett": 16}}, "parmesan": {"name": "Parmesan/Grana am Stück", "abteilung": "Kühltheke", "packung": {"einheit": "× 150 g", "menge": 150}, "naehrwerte": {"basis": "100 g", "kcal": 390, "protein": 33, "fett": 28}, "haltbar": true}, "eier": {"name": "Eier", "abteilung": "Kühltheke", "packung": {"einheit": "Stück", "menge": 1}, "naehrwerte": {"basis": "Stück", "kcal": 81, "protein": 7.5, "fett": 5.5, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}, "haltbar": true}, "kichererbsen": {"name": "Kichererbsen (Dose)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 240}, "naehrwerte": {"basis": "100 g", "kcal": 120, "protein": 7, "fett": 2.6}}, "kidneybohnen": {"name": "Kidneybohnen (Dose)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 130}, "naehrwerte": {"basis": "100 g", "kcal": 108, "protein": 7.5, "fett": 0.6, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "mais": {"name": "Mais (Dose)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 285}, "naehrwerte": {"basis": "100 g", "kcal": 80, "protein": 2.5, "fett": 1.2}}, "thunfisch": {"name": "Thunfisch im eigenen Saft (Dose)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 170}, "naehrwerte": {"basis": "100 g", "kcal": 101, "protein": 23.5, "fett": 0.8, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "gewuerzgurken": {"name": "Gewürzgurken", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Glas", "menge": 15}, "naehrwerte": {"basis": "Stück", "kcal": 5, "protein": 0.2, "fett": 0}, "haltbar": true}, "kokosmilch": {"name": "Kokosmilch (normal, 400 ml)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 400}, "naehrwerte": {"basis": "100 g", "kcal": 180, "protein": 1.8, "fett": 18}}, "passierte_tomaten": {"name": "Passierte Tomaten", "abteilung": "Konserven & Trocken", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 25, "protein": 1.3, "fett": 0.2, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "vollkornnudeln": {"name": "Vollkornnudeln", "abteilung": "Konserven & Trocken", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 350, "protein": 13, "fett": 2.5}}, "express_reis": {"name": "Express-Reis", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Beutel", "menge": 250}, "naehrwerte": {"basis": "100 g", "kcal": 150, "protein": 3, "fett": 2}}, "erdnussmus": {"name": "Erdnussmus", "abteilung": "Vorrat", "packung": {"einheit": "Glas", "menge": 350}, "naehrwerte": {"basis": "100 g", "kcal": 620, "protein": 25, "fett": 50}, "haltbar": true, "vorrat": true}, "tk_brokkoli": {"name": "TK-Brokkoli", "abteilung": "Tiefkühl", "packung": {"einheit": "g", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 34, "protein": 3, "fett": 0.4, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}, "haltbar": true}, "tk_erbsen": {"name": "TK-Erbsen", "abteilung": "Tiefkühl", "packung": {"einheit": "g", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 78, "protein": 5.5, "fett": 0.5, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}, "haltbar": true}, "tk_edamame": {"name": "TK-Edamame (sonst Kichererbsen)", "abteilung": "Tiefkühl", "packung": {"einheit": "× 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 130, "protein": 11, "fett": 5}}, "reis": {"name": "Basmati-Reis", "abteilung": "Vorrat", "vorrat": true, "packung": {"einheit": "g", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 360, "protein": 7.5, "fett": 0.8, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "rote_linsen": {"name": "Rote Linsen", "abteilung": "Vorrat", "vorrat": true, "packung": {"einheit": "g", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 340, "protein": 24, "fett": 1.5}}, "oel": {"name": "Olivenöl/Öl", "abteilung": "Vorrat", "vorrat": true, "packung": {"einheit": "g", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 900, "protein": 0, "fett": 100}}, "sojasauce": {"name": "Sojasauce", "abteilung": "Vorrat", "vorrat": true}, "senf": {"name": "Senf", "abteilung": "Vorrat", "vorrat": true}, "ketchup": {"name": "Ketchup", "abteilung": "Vorrat", "vorrat": true}, "honig": {"name": "Honig", "abteilung": "Vorrat", "vorrat": true}, "essig": {"name": "Essig", "abteilung": "Vorrat", "vorrat": true}, "tomatenmark": {"name": "Tomatenmark", "abteilung": "Vorrat", "vorrat": true}, "dill": {"name": "Dill (TK)", "abteilung": "Vorrat", "vorrat": true}, "gewuerze": {"name": "Gewürze (Paprika, Oregano, Kreuzkümmel, Curry, Chili, Taco, Gyros)", "abteilung": "Vorrat", "vorrat": true}, "cocktailtomaten": {"name": "Cocktailtomaten", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Schale 250 g", "menge": 250}, "naehrwerte": {"basis": "100 g", "kcal": 19, "protein": 0.9, "fett": 0.3, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}, "kokosmilch_light": {"name": "Kokosmilch light (400 ml)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose", "menge": 400}, "naehrwerte": {"basis": "100 g", "kcal": 128, "protein": 1, "fett": 12.5, "quelle": "Haakons Tracking-App (kcal), Protein/Fett geschätzt"}}};
+const REZ = {"_info": "Reis-Plan ab 23.11.2026 (Quelle: Second Brain, Fitness & Ernährung/Ernährung/Reis-Plan Beispielwoche). Mengen pro Portion in g (Knoblauch in Zehen). Makros rechnet die App aus zutaten.json. Ganze Packungen: alles Frische und TK ist am Sonntag aufgebraucht, nur Vorrat bleibt.", "ziele": {"kcal_tag": 2000, "protein_tag": 165, "fett_tag": 60, "kcal_woche": 14000}, "rezepte": [{"id": "A", "name": "Knoblauch-Soja-Hähnchen mit Brokkoli", "kurz": "Knoblauch-Hähnchen", "portionen": 4, "zutaten": [["haehnchen", 250], ["brokkoli", 250], ["reis", 80], ["rapsoel", 12], ["soja", 15], ["knoblauch", 0.75], ["gewuerze", 0]], "hinweis": "Hähnchen scharf anbraten, Knoblauch und Sojasauce dazu, Brokkoli dämpfen und untermischen. Pfeffer, Chili."}, {"id": "B", "name": "Chili con Carne mit Reis", "kurz": "Chili", "portionen": 3, "zutaten": [["rinderhack", 166.66666666666666], ["kidney", 80], ["passata", 166.66666666666666], ["paprika", 150], ["zwiebel", 50], ["linsen", 25], ["tomatenmark", 15], ["rapsoel", 7], ["reis", 70], ["gewuerze", 0]], "hinweis": "Hack und Zwiebel anbraten, Tomatenmark kurz mitrösten, Paprika, passierte Tomaten, Kidneybohnen (abgespült), rote Linsen und ca. 250 ml Wasser dazu. Chili, Paprikapulver, Kreuzkümmel, Salz. 20 min köcheln."}, {"id": "C", "name": "Erdnuss-Curry mit Hähnchen, Edamame, Erbsen und Brokkoli", "kurz": "Erdnuss-Curry", "portionen": 4, "zutaten": [["haehnchen", 250], ["brokkoli", 250], ["edamame", 100], ["erbsen", 125], ["erdnussmus", 15], ["soja", 15], ["zwiebel", 40], ["rapsoel", 5], ["reis", 55], ["gewuerze", 0]], "hinweis": "Zwiebel und Hähnchen anbraten, 2 EL Currypulver dazu. Erdnussmus, Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli, Edamame und Erbsen rein, 10 min köcheln."}, {"id": "D", "name": "Balkan-Reispfanne mit Rinderhack (Djuvec-Art)", "kurz": "Balkan-Reispfanne", "portionen": 3, "zutaten": [["rinderhack", 166.66666666666666], ["erbsen", 166.66666666666666], ["passata", 166.66666666666666], ["paprika", 150], ["zwiebel", 50], ["tomatenmark", 15], ["rapsoel", 5], ["reis", 65], ["knoblauch", 0.67], ["gewuerze", 0]], "hinweis": "Hack und Zwiebel anbraten, Tomatenmark, Paprikapulver edelsüß und Knoblauch dazu, Paprika, passierte Tomaten und Erbsen rein, 15 min köcheln. Mit dem Reis mischen."}, {"id": "Q1", "name": "Quark-Nachtisch (⅔ Becher)", "kurz": "Quark ⅔ Becher", "portionen": 3, "zutaten": [["magerquark", 333.3333333333333], ["leinsamen", 15], ["gewuerze", 0]], "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."}, {"id": "Q2", "name": "Quark-Nachtisch (½ Becher)", "kurz": "Quark ½ Becher", "portionen": 4, "zutaten": [["magerquark", 250], ["leinsamen", 15], ["gewuerze", 0]], "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."}], "sessions": [{"id": "mo", "name": "Montag", "wann": "morgens im Homeoffice", "deckt": "Mo mittags bis Do mittags", "rezepte": ["A", "B", "Q1"], "minuten": 60, "prep": ["Reis 530 g (für Hähnchen und Chili) mit doppelter Menge Wasser aufsetzen.", "Chili: Zwiebel und Hack in 2 EL Öl anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.", "Hähnchen (1 kg) würfeln und in 5 EL Öl in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.", "Brokkoli (1 kg) dämpfen oder in der Pfanne mitgaren und unter das Hähnchen mischen.", "Reis flach ausbreiten und schnell abkühlen lassen.", "Abfüllen: 4 Boxen Hähnchen mit je ca. 240 g gekochtem Reis, 3 Boxen Chili mit je ca. 210 g.", "Do-Box Hähnchen einfrieren, Mi abends in den Kühlschrank legen. Der Rest kommt in den Kühlschrank."]}, {"id": "do", "name": "Donnerstag", "wann": "abends nach dem Einkauf", "deckt": "Do abends bis So abends", "rezepte": ["C", "D", "Q2"], "minuten": 60, "prep": ["Reis 415 g (für Curry und Balkan-Pfanne) mit doppelter Menge Wasser aufsetzen.", "Balkan-Pfanne: Zwiebel und Hack in 1,5 EL Öl anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.", "Curry: Zwiebel und Hähnchen (1 kg) in 2 EL Öl anbraten, 2 EL Currypulver. 60 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.", "Reis flach ausbreiten und schnell abkühlen lassen.", "Abfüllen: 4 Boxen Curry mit je ca. 165 g gekochtem Reis, 3 Boxen Balkan-Pfanne mit je ca. 195 g. Eine Curry-Box gleich essen.", "So-Boxen (1 Curry, 1 Balkan-Pfanne) einfrieren, Sa abends in den Kühlschrank legen."]}], "tage": [{"tag": "Mo", "mittag": "A", "abend": "B", "quark": "Q1"}, {"tag": "Di", "mittag": "A", "abend": "B", "quark": "Q1"}, {"tag": "Mi", "mittag": "A", "abend": "B", "quark": "Q1"}, {"tag": "Do", "mittag": "A", "abend": "C", "quark": "Q2"}, {"tag": "Fr", "mittag": "D", "abend": "C", "quark": "Q2"}, {"tag": "Sa", "mittag": "D", "abend": "C", "quark": "Q2"}, {"tag": "So", "mittag": "D", "abend": "C", "quark": "Q2"}], "regeln": ["Gekochtes hält 3–4 Tage im Kühlschrank. Die letzte Box jeder Session einfrieren.", "Reis nach dem Kochen flach ausbreiten, schnell abkühlen lassen und gleich in den Kühlschrank.", "Gefrorene Box immer am Vorabend in den Kühlschrank legen.", "Kalzium ist knapp: täglich ca. 1 l kalziumreiches Mineralwasser (ab 250 mg/l) trinken.", "Packung im Markt anders groß? Packung durch die Anzahl Boxen teilen."]};
+const ZUT = {"_info": "Zutaten-Stammdaten für den Reis-Plan (ab 23.11.2026). packung.menge = g pro Packung (Kidneybohnen: abgetropft). preis = geschätzter Kaufland-Preis pro Packung in €, keine Kassenbons. vorrat = true: nicht in der Einkaufsliste, nur im Vorrat-Check. Nährwerte pro 100 g, Standardwerte.", "haehnchen": {"name": "Hähnchenbrustfilet", "abteilung": "Kühltheke", "packung": {"einheit": "Packung 1 kg", "menge": 1000}, "naehrwerte": {"basis": "100 g", "kcal": 105, "protein": 23.5, "fett": 1.2, "kh": 0, "ballaststoffe": 0}, "preis": 8.99}, "rinderhack": {"name": "Rinderhackfleisch", "abteilung": "Kühltheke", "packung": {"einheit": "Packung 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 215, "protein": 20, "fett": 15, "kh": 0, "ballaststoffe": 0}, "preis": 4.99}, "magerquark": {"name": "Magerquark", "abteilung": "Kühltheke", "packung": {"einheit": "Becher 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 67, "protein": 12, "fett": 0.2, "kh": 4, "ballaststoffe": 0}, "preis": 1.29}, "brokkoli": {"name": "TK-Brokkoli", "abteilung": "Tiefkühl", "packung": {"einheit": "Beutel 1 kg", "menge": 1000}, "naehrwerte": {"basis": "100 g", "kcal": 30, "protein": 3, "fett": 0.4, "kh": 3, "ballaststoffe": 3}, "preis": 2.29}, "erbsen": {"name": "TK-Erbsen", "abteilung": "Tiefkühl", "packung": {"einheit": "Beutel 1 kg", "menge": 1000}, "naehrwerte": {"basis": "100 g", "kcal": 75, "protein": 5.5, "fett": 0.5, "kh": 10, "ballaststoffe": 5}, "preis": 1.99}, "edamame": {"name": "TK-Edamame, geschält", "abteilung": "Tiefkühl", "packung": {"einheit": "Beutel 400 g", "menge": 400}, "naehrwerte": {"basis": "100 g", "kcal": 125, "protein": 11.5, "fett": 5, "kh": 5, "ballaststoffe": 5}, "preis": 2.49}, "kidney": {"name": "Kidneybohnen", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Dose 400 g", "menge": 240}, "naehrwerte": {"basis": "100 g", "kcal": 100, "protein": 7.5, "fett": 0.5, "kh": 13, "ballaststoffe": 6}, "preis": 0.79}, "passata": {"name": "Passierte Tomaten", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Packung 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 32, "protein": 1.4, "fett": 0.2, "kh": 5, "ballaststoffe": 1}, "preis": 0.69}, "paprika": {"name": "Paprika", "abteilung": "Obst & Gemüse", "packung": {"einheit": "3er-Pack", "menge": 450}, "naehrwerte": {"basis": "100 g", "kcal": 30, "protein": 1, "fett": 0.3, "kh": 5, "ballaststoffe": 2}, "preis": 1.99}, "zwiebel": {"name": "Zwiebel", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Stück", "menge": 150}, "naehrwerte": {"basis": "100 g", "kcal": 33, "protein": 1.2, "fett": 0.2, "kh": 6, "ballaststoffe": 1.5}, "preis": 0.25}, "reis": {"name": "Reis (Langkorn oder Basmati)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Packung 1 kg", "menge": 1000}, "naehrwerte": {"basis": "100 g", "kcal": 350, "protein": 7, "fett": 0.6, "kh": 78, "ballaststoffe": 1.4}, "preis": 1.79, "vorrat": true}, "linsen": {"name": "Rote Linsen", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Packung 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 340, "protein": 24, "fett": 1.5, "kh": 50, "ballaststoffe": 11}, "preis": 1.49, "vorrat": true}, "rapsoel": {"name": "Rapsöl", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Flasche 1 l", "menge": 920}, "naehrwerte": {"basis": "100 g", "kcal": 884, "protein": 0, "fett": 100, "kh": 0, "ballaststoffe": 0}, "preis": 1.99, "vorrat": true}, "leinsamen": {"name": "Leinsamen geschrotet", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Packung 500 g", "menge": 500}, "naehrwerte": {"basis": "100 g", "kcal": 534, "protein": 18, "fett": 42, "kh": 1.6, "ballaststoffe": 27}, "preis": 1.29, "vorrat": true}, "erdnussmus": {"name": "Erdnussmus", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Glas", "menge": 350}, "naehrwerte": {"basis": "100 g", "kcal": 600, "protein": 25, "fett": 49, "kh": 12, "ballaststoffe": 7}, "preis": 2.99, "vorrat": true}, "soja": {"name": "Sojasauce", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Flasche", "menge": 250}, "naehrwerte": {"basis": "100 g", "kcal": 60, "protein": 8, "fett": 0, "kh": 5, "ballaststoffe": 0}, "preis": 1.49, "vorrat": true}, "tomatenmark": {"name": "Tomatenmark (Tube)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Tube 200 g", "menge": 200}, "naehrwerte": {"basis": "100 g", "kcal": 80, "protein": 4.5, "fett": 0.5, "kh": 13, "ballaststoffe": 3}, "preis": 0.99, "vorrat": true}, "knoblauch": {"name": "Knoblauch", "abteilung": "Obst & Gemüse", "packung": {"einheit": "Knolle", "menge": 10}, "naehrwerte": {"basis": "Zehe", "kcal": 0, "protein": 0, "fett": 0, "kh": 0, "ballaststoffe": 0}, "preis": 0.49, "vorrat": true}, "gewuerze": {"name": "Gewürze (Chili, Paprika, Kreuzkümmel, Curry, Zimt, Jodsalz, Pfeffer)", "abteilung": "Konserven & Trocken", "packung": {"einheit": "Glas", "menge": 1}, "naehrwerte": {"basis": "100 g", "kcal": 0, "protein": 0, "fett": 0, "kh": 0, "ballaststoffe": 0}, "vorrat": true}};
 
 const byId = Object.fromEntries(REZ.rezepte.map(r => [r.id, r]));
-const salate = REZ.rezepte.filter(r => r.typ === "salat");
-const abende = REZ.rezepte.filter(r => r.typ === "abend");
-const ABT = ["Obst & Gemüse", "Kühltheke", "Konserven & Trocken", "Tiefkühl"];
+const sessById = Object.fromEntries(REZ.sessions.map(s => [s.id, s]));
+const ABT = ["Kühltheke", "Obst & Gemüse", "Tiefkühl", "Konserven & Trocken"];
 
 const store = {
   get(k, d){ try { const v = localStorage.getItem("mp." + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v){ try { localStorage.setItem("mp." + k, JSON.stringify(v)); } catch {} }
 };
-let state = Object.assign({ wahl: 1, salat: salate[0].id, abend: abende[0].id, tab: "woche" }, store.get("state", {}));
-const save = () => store.set("state", state);
-
 const fmt = n => n.toLocaleString("de-DE");
+const eur = n => n.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
 const kw = d => { const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day); const y = new Date(Date.UTC(t.getUTCFullYear(), 0, 1)); return Math.ceil(((t - y) / 864e5 + 1) / 7); };
+const heuteSess = () => { const d = new Date().getDay(); return d >= 1 && d <= 3 ? "mo" : "do"; };
 
-function auswahl(){
-  if (state.wahl === "frei") return { salat: byId[state.salat], abend: byId[state.abend], woche: null };
-  const w = REZ.rotation.find(x => x.woche === state.wahl);
-  return { salat: byId[w.salat], abend: byId[w.abend], woche: w };
+let state = Object.assign({ tab: "woche" }, store.get("reis", {}));
+if (!["woche", "einkauf", "prep", "rezepte"].includes(state.tab)) state.tab = "woche";
+let sess = heuteSess();
+const save = () => store.set("reis", { tab: state.tab });
+// Häkchen gelten pro Kalenderwoche, nächste Woche startet die Liste leer.
+const key = s => `kw${kw(new Date())}:${s}`;
+
+// Makros pro Portion aus den Nährwerten
+function makros(r){
+  const m = { kcal: 0, protein: 0, fett: 0, kh: 0 };
+  for (const [k, g] of r.zutaten){ const n = ZUT[k].naehrwerte; if (n.basis !== "100 g") continue;
+    for (const f of Object.keys(m)) m[f] += n[f] * g / 100; }
+  return { kcal: Math.round(m.kcal), protein: Math.round(m.protein), fett: Math.round(m.fett), kh: Math.round(m.kh) };
 }
-const key = () => state.wahl === "frei" ? `frei:${state.salat}:${state.abend}` : `w${state.wahl}`;
+const M = Object.fromEntries(REZ.rezepte.map(r => [r.id, makros(r)]));
+const tagSum = t => ["mittag", "abend", "quark"].reduce((a, x) => { const m = M[t[x]]; for (const f in a) a[f] += m[f]; return a; }, { kcal: 0, protein: 0, fett: 0, kh: 0 });
 
-function einkauf(){
-  const { salat, abend } = auswahl();
+function einkauf(sid){
   const tot = {};
-  for (const r of [salat, abend])
-    for (const [k, m] of r.zutaten) tot[k] = (tot[k] || 0) + m * r.portionen;
+  for (const id of sessById[sid].rezepte){ const r = byId[id];
+    for (const [k, m] of r.zutaten) tot[k] = (tot[k] || 0) + m * r.portionen; }
   const out = {}, vorrat = [];
+  let summe = 0;
   for (const [k, m] of Object.entries(tot)){
     const z = ZUT[k];
     if (z.vorrat){ vorrat.push(z.name); continue; }
-    const p = z.packung;
-    let qty, need = "";
-    if (p.einheit === "g" && p.menge === 1) qty = `${fmt(Math.round(m / 10) * 10)} g`;
-    else {
-      const n = Math.max(1, Math.ceil(m / p.menge - 0.08));
-      const PL = { "Dose": "Dosen", "Glas": "Gläser", "Knolle": "Knollen", "Schale 500 g": "Schalen à 500 g", "Netz 2 kg": "Netze à 2 kg", "Beutel 1 kg": "Beutel à 1 kg" };
-      qty = `${n} ${n > 1 && PL[p.einheit] ? PL[p.einheit] : p.einheit}`;
-      if (p.menge >= 50) need = `${fmt(Math.round(m))} g gebraucht`;
-    }
-    (out[z.abteilung] ||= []).push({ k, name: z.name, qty, need, tausch: z.tauschbar });
+    const n = Math.max(1, Math.ceil(m / z.packung.menge - 0.08));
+    summe += n * (z.preis || 0);
+    const einh = z.packung.einheit;
+    const qty = einh === "Stück" ? `${n} Stück` : n === 1 ? einh : `${n} × ${einh}`;
+    const fuer = REZ.rezepte.filter(r => sessById[sid].rezepte.includes(r.id) && r.zutaten.some(([kk]) => kk === k)).map(r => r.kurz.startsWith("Quark") ? "Quark" : r.kurz).join(", ");
+    (out[z.abteilung] ||= []).push({ k, name: z.name, qty, need: `für ${fuer}`, preis: z.preis ? n * z.preis : 0 });
   }
-  return { out, vorrat: [...new Set(vorrat)] };
+  return { out, vorrat: [...new Set(vorrat)], summe };
 }
 
+const sessSwitch = () => `<div class="switch two" role="tablist" aria-label="Einkaufstag">${REZ.sessions.map(s => `<button role="tab" data-sess="${s.id}" aria-selected="${s.id === sess}">${s.name}</button>`).join("")}</div>`;
+const chips = m => `<div class="macros"><span class="chip">${fmt(m.kcal)} kcal</span><span class="chip p">${m.protein} g Protein</span><span class="chip">${m.fett} g Fett</span><span class="chip">${m.kh} g KH</span></div>`;
 
-function chips(m){
-  return `<div class="macros"><span class="chip">${fmt(m.kcal)} kcal</span><span class="chip p">${m.protein} g Protein</span>${m.fett != null ? `<span class="chip">${m.fett} g Fett</span>` : ""}</div>`;
-}
-
-function mealRow(label, r, when){
-  const m = r.makros;
-  const txt = `${r.name}: ${m.kcal} kcal, ${m.protein} g Protein${m.fett != null ? ", " + m.fett + " g Fett" : ""}`;
+function mealRow(r, when){
+  const m = M[r.id];
+  const txt = `${r.name}: ${m.kcal} kcal, ${m.protein} g Protein, ${m.fett} g Fett, ${m.kh} g KH`;
   return `<div class="meal">
-    <div><div class="meal-label">${label} · ${when}</div><h2>${r.name}</h2></div>
-    <div class="count">× ${r.portionen}<small>${r.portionen === 1 ? "Portion" : "Portionen"}</small></div>
-    <div class="macro"><span>${fmt(m.kcal)} kcal</span><span class="p">${m.protein} g Protein</span>${m.fett != null ? `<span>${m.fett} g Fett</span>` : ""}<button class="copy" data-copy="${txt}">Kopieren</button></div>
+    <div><div class="meal-label">${when}</div><h2>${r.name}</h2></div>
+    <div class="count">× ${r.portionen}<small>Boxen</small></div>
+    <div class="macro"><span>${fmt(m.kcal)} kcal</span><span class="p">${m.protein} g Protein</span><span>${m.fett} g Fett</span><button class="copy" data-copy="${txt}">Kopieren</button></div>
   </div>`;
 }
 
 function viewWoche(){
-  const { salat, abend } = auswahl(), z = REZ.ziele;
-  const di = { kcal: salat.makros.kcal + abend.makros.kcal, protein: salat.makros.protein + abend.makros.protein };
+  const z = REZ.ziele, heute = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"][new Date().getDay()];
+  const sums = REZ.tage.map(tagSum);
+  const woche = sums.reduce((a, s) => a + s.kcal, 0), pAvg = Math.round(sums.reduce((a, s) => a + s.protein, 0) / 7);
   const st = (v, goal, isP) => isP
     ? (v >= goal ? `<span class="st">Ziel erreicht</span>` : `<span class="st warn">${goal - v} g fehlen</span>`)
-    : (v <= goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
-  const rest = z.kcal_woche - 5 * di.kcal;
+    : (Math.abs(v - goal) <= 50 ? `<span class="st">passt</span>` : v < goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
+  const t = REZ.tage.find(x => x.tag === heute);
   return `
-    <div><h1 class="hello">Diese Woche: <em>${salat.kurz}</em> und <em>${abend.kurz}</em>.</h1>
-    <p class="lead">Montagmorgen Einkauf und Salat-Prep, abends kochst du frisch. Pro Portion, so wie du es in die Tracking-App einträgst.</p></div>
+    <div><h1 class="hello">Heute: <em>${byId[t.mittag].kurz}</em> und <em>${byId[t.abend].kurz}</em>.</h1>
+    <p class="lead">15 Uhr und ca. 18:30 je eine Box, abends Quark dazu. Montag und Donnerstag kaufst du ein und kochst.</p></div>
     <section class="panel">
-      ${mealRow("Salat", salat, "Mo–Fr, 15 Uhr, Box")}
-      ${mealRow("Abendessen", abend, "Mo–Fr, abends frisch")}
+      ${mealRow(byId.A, "Montag gekocht · Mo–Do, 15 Uhr")}
+      ${mealRow(byId.B, "Montag gekocht · Mo–Mi, abends")}
+      ${mealRow(byId.C, "Donnerstag gekocht · Do–So, abends")}
+      ${mealRow(byId.D, "Donnerstag gekocht · Fr–So, 15 Uhr")}
+      ${mealRow(byId.Q1, "Mo–Mi, nach dem Abendessen")}
+      ${mealRow(byId.Q2, "Do–So, nach dem Abendessen")}
     </section>
     <section>
-      <h3 class="h-sec">Tagessumme gegen dein Ziel</h3>
-      <div class="panel" style="overflow-x:auto"><table>
+      <h3 class="h-sec">Tage gegen dein Ziel</h3>
+      <div class="panel" style="overflow-x:auto"><table class="days">
         <thead><tr><th>Tag</th><th>kcal</th><th>Protein</th></tr></thead>
-        <tbody>
-          <tr><td>Mo–Fr</td><td>${fmt(di.kcal)}<br>${st(di.kcal, z.kcal_tag)}</td><td>${di.protein} g<br>${st(di.protein, z.protein_tag, true)}</td></tr>
-        </tbody></table></div>
+        <tbody>${REZ.tage.map((x, i) => `<tr${x.tag === heute ? ' style="background:var(--accent-soft)"' : ""}><td>${x.tag}<small>${byId[x.mittag].kurz} · ${byId[x.abend].kurz}</small></td><td>${fmt(sums[i].kcal)}<br>${st(sums[i].kcal, z.kcal_tag)}</td><td>${sums[i].protein} g<br>${st(sums[i].protein, z.protein_tag, true)}</td></tr>`).join("")}</tbody>
+      </table></div>
     </section>
-    <p class="note">Ziel: ${fmt(z.kcal_tag)} kcal und ${z.protein_tag} g Protein pro Tag. Fürs Wochenende, an dem du frisch kochst, bleiben vom Wochenbudget (${fmt(z.kcal_woche)} kcal) noch ${fmt(rest)} kcal.</p>`;
+    <p class="note">Woche: ${fmt(woche)} kcal von ${fmt(z.kcal_woche)}, im Schnitt ${pAvg} g Protein pro Tag (Ziel ${z.protein_tag} g). Werte aus Standard-Nährwerten, in der Tracking-App die Etiketten nehmen.</p>`;
 }
 
 function viewEinkauf(){
-  const { out, vorrat } = einkauf();
-  const checks = store.get("checks:" + key(), {});
-  const total = Object.values(out).flat().length, done = Object.values(out).flat().filter(i => checks[i.k]).length;
-  let h = `<div class="section"><div class="bar"><h3>${done} von ${total} im Wagen</h3><button class="reset" id="reset">Zurücksetzen</button></div><div class="progress"><span style="width:${total ? done / total * 100 : 0}%"></span></div>`;
+  const s = sessById[sess], { out, vorrat, summe } = einkauf(sess);
+  const checks = store.get("checks:" + key(sess), {});
+  const all = Object.values(out).flat(), done = all.filter(i => checks[i.k]).length;
+  let h = `<div class="section">${sessSwitch()}<p class="note">${s.name} ${s.wann}, reicht für ${s.deckt}.</p>
+    <div class="bar"><h3>${done} von ${all.length} im Wagen</h3><button class="reset" id="reset">Zurücksetzen</button></div><div class="progress"><span style="width:${all.length ? done / all.length * 100 : 0}%"></span></div>`;
   for (const a of ABT){
     if (!out[a]) continue;
     h += `<div class="group"><span class="eyebrow">${a}</span>`;
-    for (const i of out[a]) h += `<label class="item ${checks[i.k] ? "done" : ""}"><input type="checkbox" id="c-${i.k}" data-k="${i.k}" ${checks[i.k] ? "checked" : ""}><span class="what">${i.name}${i.need ? `<span class="need">${i.need}</span>` : ""}${i.tausch ? `<span class="need">${i.tausch}</span>` : ""}</span><span class="qty">${i.qty}</span></label>`;
+    for (const i of out[a]) h += `<label class="item ${checks[i.k] ? "done" : ""}"><input type="checkbox" data-k="${i.k}" ${checks[i.k] ? "checked" : ""}><span class="what">${i.name}<span class="need">${i.need}</span></span><span class="qty">${i.qty}</span></label>`;
     h += `</div>`;
   }
-  h += `<details><summary>Vorrat prüfen (${vorrat.length})</summary><ul class="plain">${vorrat.map(v => `<li>${v}</li>`).join("")}</ul></details>
-  <p class="note">Die Mengen gehen in ganzen Packungen auf: Frisches ist bis Freitag aufgebraucht. Übrig bleiben dürfen nur haltbare Sachen wie TK-Gemüse, Gewürzgurken oder Parmesan.</p></div>`;
+  const andere = einkauf(sess === "mo" ? "do" : "mo").summe;
+  h += `<div class="group"><div class="cost"><span>ca. ${s.name}</span><span>${eur(summe)}</span></div><div class="cost"><span>ca. Woche (ohne Vorrat)</span><span>${eur(summe + andere)}</span></div></div>
+  <details><summary>Vorrat prüfen (${vorrat.length})</summary><ul class="plain">${vorrat.map(v => `<li>${v}</li>`).join("")}</ul></details>
+  <p class="note">Ganze Packungen: Frisches und TK sind bis Sonntag aufgebraucht, übrig bleibt nur Vorrat. Preise sind Schätzungen für Kaufland-Eigenmarke.</p></div>`;
   return h;
 }
 
 function viewPrep(){
-  const { salat, abend, woche } = auswahl();
-  const steps = woche ? woche.prep : [`${salat.name}: Protein und haltbare Teile für 5 Portionen vorbereiten. ${salat.hinweis}`, "Fleisch fürs Abendessen in 5 Tagesportionen teilen, Mi–Fr einfrieren."];
-  const checks = store.get("prep:" + key(), {});
-  return `<div class="section">
-    <div class="bar"><h3>${REZ.rhythmus.prep}${woche ? ` · ca. ${woche.prep_minuten} min` : ""}</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
-    <div class="group">${steps.map((s, i) => `<label class="item ${checks[i] ? "done" : ""}"><input type="checkbox" id="p-${i}" data-p="${i}" ${checks[i] ? "checked" : ""}><span class="stepno">${i + 1}</span><span class="what">${s}</span></label>`).join("")}</div>
-    ${woche ? "" : `<p class="note">Für freie Kombinationen gibt es noch keinen fertigen Ablauf, nur die Hinweise aus den Rezepten.</p>`}
-    <details open><summary>Salat frisch halten</summary><ul class="plain">${REZ.salat_regeln.map(s => `<li>${s}</li>`).join("")}</ul></details>
-    <details><summary>Was wann aus dem Gefrierfach</summary><ul class="plain">
-      <li>Salat-Protein: Do und Fr eingefroren.</li>
-      <li>Rohes Fleisch fürs Abendessen: Mi, Do und Fr eingefroren.</li>
-      <li>Immer am Vorabend in den Kühlschrank legen.</li></ul></details>
-    <details><summary>Abendessen: ${abend.name}</summary><div class="section"><p class="note">${abend.hinweis}</p>${ingList(abend)}</div></details>
+  const s = sessById[sess], checks = store.get("prep:" + key(sess), {});
+  return `<div class="section">${sessSwitch()}
+    <div class="bar"><h3>${s.name} ${s.wann} · ca. ${s.minuten} min</h3><button class="reset" id="resetPrep">Zurücksetzen</button></div>
+    <div class="group">${s.prep.map((x, i) => `<label class="item ${checks[i] ? "done" : ""}"><input type="checkbox" data-p="${i}" ${checks[i] ? "checked" : ""}><span class="stepno">${i + 1}</span><span class="what">${x}</span></label>`).join("")}</div>
+    <details open><summary>Haltbarkeit und Tipps</summary><ul class="plain">${REZ.regeln.map(x => `<li>${x}</li>`).join("")}</ul></details>
   </div>`;
 }
 
 function ingList(r){
   const rows = r.zutaten.filter(([k, m]) => m > 0).map(([k, m]) => {
-    const z = ZUT[k], unit = (z.packung && z.packung.menge === 1 && z.packung.einheit !== "g") || k === "eier" || k === "knoblauch" || k === "gewuerzgurken" ? (k === "knoblauch" ? " Zehe" : " Stk.") : " g";
-    return `<span>${z.name}</span><span>${fmt(m)}${unit}</span><span>${fmt(Math.round(m * r.portionen * 100) / 100)}${unit}</span>`;
+    const unit = k === "knoblauch" ? " Zehe" : " g", rd = v => k === "knoblauch" ? Math.round(v * 10) / 10 : Math.round(v);
+    return `<span>${ZUT[k].name}</span><span>${fmt(rd(m))}${unit}</span><span>${fmt(rd(m * r.portionen))}${unit}</span>`;
   }).join("");
-  return `<div class="ing"><span class="h">Zutat</span><span class="h">Portion</span><span class="h">× ${r.portionen}</span>${rows}</div>`;
+  return `<div class="ing"><span class="h">Zutat</span><span class="h">Box</span><span class="h">× ${r.portionen}</span>${rows}</div>`;
 }
 function viewRezepte(){
-  const all = REZ.rezepte;
-  return `<div class="section">${all.map(r => `<details><summary>${r.name}</summary><div class="section">${chips(r.makros)}${ingList(r)}<p class="note">${r.hinweis}</p></div></details>`).join("")}</div>`;
-}
-
-
-function openMenu(open){
-  document.getElementById("drawer").hidden = !open;
-  document.getElementById("scrim").hidden = !open;
+  return `<div class="section">${REZ.rezepte.map(r => `<details><summary>${r.name}</summary><div class="section">${chips(M[r.id])}${ingList(r)}<p class="note">${r.hinweis}</p></div></details>`).join("")}</div>`;
 }
 
 function render(){
   document.getElementById("kw").textContent = `KW ${kw(new Date())}`;
-  const { salat, abend } = auswahl();
-  document.getElementById("wTitle").textContent = state.wahl === "frei" ? "Eigene Kombination" : `Woche ${state.wahl}`;
-  document.getElementById("wSub").textContent = `${salat.kurz} + ${abend.kurz}`;
-  document.getElementById("dWeeks").innerHTML = REZ.rotation.map(w => `<button class="d-item" data-w="${w.woche}" aria-current="${state.wahl === w.woche}"><b>Woche ${w.woche}</b><span>${byId[w.salat].kurz} + ${byId[w.abend].kurz}</span></button>`).join("");
-  document.getElementById("dFree").setAttribute("aria-current", state.wahl === "frei");
-  document.getElementById("freePick").hidden = state.wahl !== "frei";
-  document.querySelectorAll(".switch button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
+  document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
   document.getElementById("view").innerHTML = { woche: viewWoche, einkauf: viewEinkauf, prep: viewPrep, rezepte: viewRezepte }[state.tab]();
 }
 
-const opt = (list, sel) => list.map(r => `<option value="${r.id}" ${r.id === sel ? "selected" : ""}>${r.name}</option>`).join("");
-document.getElementById("selSalat").innerHTML = opt(salate, state.salat);
-document.getElementById("selAbend").innerHTML = opt(abende, state.abend);
-document.getElementById("selSalat").onchange = e => { state.salat = e.target.value; save(); render(); };
-document.getElementById("selAbend").onchange = e => { state.abend = e.target.value; save(); render(); };
-
 document.addEventListener("click", e => {
-  if (e.target.closest("#openMenu, #weekBtn")){ openMenu(true); return; }
-  if (e.target.closest("#closeMenu, #scrim")){ openMenu(false); return; }
-  const w = e.target.closest("[data-w]");
-  if (w){ const frei = w.dataset.w === "frei"; state.wahl = frei ? "frei" : +w.dataset.w; save(); render(); if (!frei) openMenu(false); return; }
   const t = e.target.closest("[data-tab]");
   if (t){ state.tab = t.dataset.tab; save(); render(); window.scrollTo(0, 0); return; }
+  const sb = e.target.closest("[data-sess]");
+  if (sb){ sess = sb.dataset.sess; render(); return; }
   const c = e.target.closest("[data-copy]");
   if (c){ const txt = c.dataset.copy; const ok = () => { c.textContent = "Kopiert"; setTimeout(() => c.textContent = "Kopieren", 1500); };
     try { navigator.clipboard.writeText(txt).then(ok, () => { c.textContent = txt; }); } catch { c.textContent = txt; } return; }
-  if (e.target.id === "reset"){ store.set("checks:" + key(), {}); render(); }
-  if (e.target.id === "resetPrep"){ store.set("prep:" + key(), {}); render(); }
+  if (e.target.id === "reset"){ store.set("checks:" + key(sess), {}); render(); }
+  if (e.target.id === "resetPrep"){ store.set("prep:" + key(sess), {}); render(); }
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape") openMenu(false); });
 document.addEventListener("change", e => {
-  const k = e.target.dataset && (e.target.dataset.k ?? e.target.dataset.p);
+  const d = e.target.dataset || {};
+  const k = d.k ?? d.p;
   if (k === undefined) return;
-  const bucket = (e.target.dataset.k !== undefined ? "checks:" : "prep:") + key();
+  const bucket = (d.k !== undefined ? "checks:" : "prep:") + key(sess);
   const s = store.get(bucket, {}); s[k] = e.target.checked; store.set(bucket, s);
   e.target.closest(".item").classList.toggle("done", e.target.checked);
   if (state.tab === "einkauf") render();
 });
 render();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
-</script>
-</body>
+</script></body>
 </html>
