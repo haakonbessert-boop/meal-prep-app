@@ -1,5 +1,5 @@
 {
- "_info": "Reis-Plan ab 23.11.2026 (Quelle: Second Brain, Fitness & Ernährung/Ernährung/Reis-Plan Beispielwoche). Mengen pro Portion in g (Knoblauch in Zehen). Makros rechnet die App aus zutaten.json. Ganze Packungen: alles Frische und TK ist am Sonntag aufgebraucht, nur Vorrat bleibt.",
+ "_info": "Reis-Plan ab 23.11.2026 (Quelle: Second Brain, Fitness & Ernährung/Ernährung/Reis-Plan Beispielwoche). Mengen pro Portion in g (Knoblauch in Zehen). Makros rechnet die App aus zutaten.json. Ganze Packungen: alles Frische und TK ist am Sonntag aufgebraucht, nur Vorrat bleibt. Seit 23.11. nachmittags: Quark als Soße zum Hähnchen (A und C, je 250 g), keine Leinsamen, mehr Öl.",
  "ziele": {
   "kcal_tag": 2000,
   "protein_tag": 165,
@@ -27,7 +27,7 @@
     ],
     [
      "rapsoel",
-     12
+     15
     ],
     [
      "soja",
@@ -80,7 +80,7 @@
     ],
     [
      "rapsoel",
-     7
+     15
     ],
     [
      "reis",
@@ -129,7 +129,7 @@
     ],
     [
      "rapsoel",
-     5
+     10
     ],
     [
      "reis",
@@ -174,7 +174,7 @@
     ],
     [
      "rapsoel",
-     5
+     15
     ],
     [
      "reis",
@@ -193,29 +193,8 @@
   },
   {
    "id": "Q1",
-   "name": "Quark-Nachtisch (⅔ Becher)",
-   "kurz": "Quark ⅔ Becher",
-   "portionen": 3,
-   "zutaten": [
-    [
-     "magerquark",
-     333.3333333333333
-    ],
-    [
-     "leinsamen",
-     15
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."
-  },
-  {
-   "id": "Q2",
-   "name": "Quark-Nachtisch (½ Becher)",
-   "kurz": "Quark ½ Becher",
+   "name": "Quark-Soße zum Hähnchen",
+   "kurz": "Quark-Soße",
    "portionen": 4,
    "zutaten": [
     [
@@ -223,15 +202,36 @@
      250
     ],
     [
-     "leinsamen",
-     15
+     "knoblauch",
+     0.5
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Magerquark mit 2 EL Leinsamen, Zimt und etwas Wasser cremig rühren, nach Wunsch Süßstoff."
+   "hinweis": "250 g Magerquark pro Box mit Knoblauch, Salz, Pfeffer, Kräutern und etwas Wasser glatt rühren. Kalt zur warmen Box, nicht mit aufwärmen."
+  },
+  {
+   "id": "Q2",
+   "name": "Quark-Soße zum Hähnchen",
+   "kurz": "Quark-Soße",
+   "portionen": 4,
+   "zutaten": [
+    [
+     "magerquark",
+     250
+    ],
+    [
+     "knoblauch",
+     0.5
+    ],
+    [
+     "gewuerze",
+     0
+    ]
+   ],
+   "hinweis": "250 g Magerquark pro Box mit Knoblauch, Salz, Pfeffer, Kräutern und etwas Wasser glatt rühren. Kalt zur warmen Box, nicht mit aufwärmen."
   }
  ],
  "sessions": [
@@ -248,11 +248,12 @@
    "minuten": 60,
    "prep": [
     "Reis 530 g (für Hähnchen und Chili) mit doppelter Menge Wasser aufsetzen.",
-    "Chili: Zwiebel und Hack in 2 EL Öl anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.",
-    "Hähnchen (1 kg) würfeln und in 5 EL Öl in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.",
+    "Chili: Zwiebel und Hack in 4–5 EL Öl (45 g) anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.",
+    "Hähnchen (1 kg) würfeln und in 4 EL Öl (60 g) in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.",
     "Brokkoli (1 kg) dämpfen oder in der Pfanne mitgaren und unter das Hähnchen mischen.",
     "Reis flach ausbreiten und schnell abkühlen lassen.",
     "Abfüllen: 4 Boxen Hähnchen mit je ca. 240 g gekochtem Reis, 3 Boxen Chili mit je ca. 210 g.",
+    "Quark-Soße: 2 Becher Quark (1 kg) mit Knoblauch, Salz, Kräutern anrühren, in 4 kleine Dosen zu den Hähnchen-Boxen.",
     "Do-Box Hähnchen einfrieren, Mi abends in den Kühlschrank legen. Der Rest kommt in den Kühlschrank."
    ]
   },
@@ -269,10 +270,11 @@
    "minuten": 60,
    "prep": [
     "Reis 415 g (für Curry und Balkan-Pfanne) mit doppelter Menge Wasser aufsetzen.",
-    "Balkan-Pfanne: Zwiebel und Hack in 1,5 EL Öl anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.",
-    "Curry: Zwiebel und Hähnchen (1 kg) in 2 EL Öl anbraten, 2 EL Currypulver. 60 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.",
+    "Balkan-Pfanne: Zwiebel und Hack in 4–5 EL Öl (45 g) anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.",
+    "Curry: Zwiebel und Hähnchen (1 kg) in 4 EL Öl (40 g) anbraten, 2 EL Currypulver. 60 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.",
     "Reis flach ausbreiten und schnell abkühlen lassen.",
     "Abfüllen: 4 Boxen Curry mit je ca. 165 g gekochtem Reis, 3 Boxen Balkan-Pfanne mit je ca. 195 g. Eine Curry-Box gleich essen.",
+    "Quark-Soße: 2 Becher Quark (1 kg) anrühren, in 4 kleine Dosen zu den Curry-Boxen.",
     "So-Boxen (1 Curry, 1 Balkan-Pfanne) einfrieren, Sa abends in den Kühlschrank legen."
    ]
   }
@@ -281,44 +283,37 @@
   {
    "tag": "Mo",
    "mittag": "A",
-   "abend": "B",
-   "quark": "Q1"
+   "abend": "B"
   },
   {
    "tag": "Di",
    "mittag": "A",
-   "abend": "B",
-   "quark": "Q1"
+   "abend": "B"
   },
   {
    "tag": "Mi",
    "mittag": "A",
-   "abend": "B",
-   "quark": "Q1"
+   "abend": "B"
   },
   {
    "tag": "Do",
    "mittag": "A",
-   "abend": "C",
-   "quark": "Q2"
+   "abend": "C"
   },
   {
    "tag": "Fr",
    "mittag": "D",
-   "abend": "C",
-   "quark": "Q2"
+   "abend": "C"
   },
   {
    "tag": "Sa",
    "mittag": "D",
-   "abend": "C",
-   "quark": "Q2"
+   "abend": "C"
   },
   {
    "tag": "So",
    "mittag": "D",
-   "abend": "C",
-   "quark": "Q2"
+   "abend": "C"
   }
  ],
  "regeln": [
@@ -326,6 +321,7 @@
   "Reis nach dem Kochen flach ausbreiten, schnell abkühlen lassen und gleich in den Kühlschrank.",
   "Gefrorene Box immer am Vorabend in den Kühlschrank legen.",
   "Kalzium ist knapp: täglich ca. 1 l kalziumreiches Mineralwasser (ab 250 mg/l) trinken.",
-  "Packung im Markt anders groß? Packung durch die Anzahl Boxen teilen."
+  "Packung im Markt anders groß? Packung durch die Anzahl Boxen teilen.",
+  "Öl wirklich abmessen statt Spray: das Fett im Plan (ca. 60 g/Tag) kommt größtenteils daher."
  ]
 }

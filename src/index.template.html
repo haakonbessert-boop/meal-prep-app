@@ -179,7 +179,8 @@ function makros(r){
   return { kcal: Math.round(m.kcal), protein: Math.round(m.protein), fett: Math.round(m.fett), kh: Math.round(m.kh) };
 }
 const M = Object.fromEntries(REZ.rezepte.map(r => [r.id, makros(r)]));
-const tagSum = t => ["mittag", "abend", "quark"].reduce((a, x) => { const m = M[t[x]]; for (const f in a) a[f] += m[f]; return a; }, { kcal: 0, protein: 0, fett: 0, kh: 0 });
+// Quark-Soße gehört zu jeder Hähnchen-Box (A und C)
+const tagSum = t => [t.mittag, t.abend].flatMap(id => ["A", "C"].includes(id) ? [id, "Q1"] : [id]).reduce((a, id) => { const m = M[id]; for (const f in a) a[f] += m[f]; return a; }, { kcal: 0, protein: 0, fett: 0, kh: 0 });
 
 function einkauf(sid){
   const tot = {};
@@ -223,14 +224,13 @@ function viewWoche(){
   const t = REZ.tage.find(x => x.tag === heute);
   return `
     <div><h1 class="hello">Heute: <em>${byId[t.mittag].kurz}</em> und <em>${byId[t.abend].kurz}</em>.</h1>
-    <p class="lead">15 Uhr und ca. 18:30 je eine Box, abends Quark dazu. Montag und Donnerstag kaufst du ein und kochst.</p></div>
+    <p class="lead">15 Uhr und ca. 18:30 je eine Box, zum Hähnchen Quark-Soße. Montag und Donnerstag kaufst du ein und kochst.</p></div>
     <section class="panel">
       ${mealRow(byId.A, "Montag gekocht · Mo–Do, 15 Uhr")}
       ${mealRow(byId.B, "Montag gekocht · Mo–Mi, abends")}
       ${mealRow(byId.C, "Donnerstag gekocht · Do–So, abends")}
       ${mealRow(byId.D, "Donnerstag gekocht · Fr–So, 15 Uhr")}
-      ${mealRow(byId.Q1, "Mo–Mi, nach dem Abendessen")}
-      ${mealRow(byId.Q2, "Do–So, nach dem Abendessen")}
+      ${mealRow({ ...byId.Q1, portionen: 8 }, "Zu jeder Hähnchen-Box (Mo–Do mittags, Do–So abends)")}
     </section>
     <section>
       <h3 class="h-sec">Tage gegen dein Ziel</h3>
@@ -278,7 +278,7 @@ function ingList(r){
   return `<div class="ing"><span class="h">Zutat</span><span class="h">Box</span><span class="h">× ${r.portionen}</span>${rows}</div>`;
 }
 function viewRezepte(){
-  return `<div class="section">${REZ.rezepte.map(r => `<details><summary>${r.name}</summary><div class="section">${chips(M[r.id])}${ingList(r)}<p class="note">${r.hinweis}</p></div></details>`).join("")}</div>`;
+  return `<div class="section">${REZ.rezepte.filter(r => r.id !== "Q2").map(r => `<details><summary>${r.name}</summary><div class="section">${chips(M[r.id])}${ingList(r)}<p class="note">${r.hinweis}</p></div></details>`).join("")}</div>`;
 }
 
 function render(){
