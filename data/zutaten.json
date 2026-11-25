@@ -1,5 +1,5 @@
 {
- "_info": "Zutaten-Stammdaten für den Reis-Plan (ab 23.11.2026). packung.menge = g pro Packung (Kidneybohnen: abgetropft). preis = geschätzter Kaufland-Preis pro Packung in €, keine Kassenbons. vorrat = true: nicht in der Einkaufsliste, nur im Vorrat-Check. Nährwerte pro 100 g, Standardwerte.",
+ "_info": "Zutaten-Stammdaten für den Reis-Plan (ab 23.11.2026). packung.menge = g pro Packung (Kidneybohnen, Mais: abgetropft). preis = geschätzter Kaufland-Preis pro Packung in €, keine Kassenbons. vorrat = true: nicht in der Einkaufsliste, nur im Vorrat-Check. Nährwerte pro 100 g, Standardwerte.",
  "haehnchen": {
   "name": "Hähnchenbrustfilet",
   "abteilung": "Kühltheke",
@@ -330,5 +330,22 @@
    "ballaststoffe": 0
   },
   "vorrat": true
+ },
+ "mais": {
+  "name": "Mais (Dose)",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Dose 285 g",
+   "menge": 285
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 80,
+   "protein": 2.7,
+   "fett": 1.2,
+   "kh": 13,
+   "ballaststoffe": 3
+  },
+  "preis": 0.79
  }
 }
