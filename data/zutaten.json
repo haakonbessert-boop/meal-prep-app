@@ -329,5 +329,23 @@
    "ballaststoffe": 3
   },
   "preis": 0.79
+ },
+ "cashew": {
+  "name": "Cashewkerne (naturbelassen)",
+  "abteilung": "Konserven & Trocken",
+  "packung": {
+   "einheit": "Beutel 200 g",
+   "menge": 200
+  },
+  "naehrwerte": {
+   "basis": "100 g",
+   "kcal": 580,
+   "protein": 18,
+   "fett": 44,
+   "kh": 30,
+   "ballaststoffe": 3
+  },
+  "preis": 2.49,
+  "vorrat": true
  }
 }
