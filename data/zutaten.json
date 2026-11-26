@@ -206,24 +206,6 @@
   "preis": 1.49,
   "vorrat": true
  },
- "rapsoel": {
-  "name": "Rapsöl",
-  "abteilung": "Konserven & Trocken",
-  "packung": {
-   "einheit": "Flasche 1 l",
-   "menge": 920
-  },
-  "naehrwerte": {
-   "basis": "100 g",
-   "kcal": 884,
-   "protein": 0,
-   "fett": 100,
-   "kh": 0,
-   "ballaststoffe": 0
-  },
-  "preis": 1.99,
-  "vorrat": true
- },
  "leinsamen": {
   "name": "Leinsamen geschrotet",
   "abteilung": "Konserven & Trocken",

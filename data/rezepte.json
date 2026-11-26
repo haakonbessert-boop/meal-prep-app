@@ -1,5 +1,5 @@
 {
- "_info": "Reis-Plan ab 23.11.2026 (Quelle: Second Brain, Fitness & Ernährung/Ernährung/Reis-Plan Beispielwoche). Mengen pro Portion in g (Knoblauch in Zehen). Makros rechnet die App aus zutaten.json. Ganze Packungen: alles Frische und TK ist am Sonntag aufgebraucht, nur Vorrat bleibt. Seit 23.11. nachmittags: Quark als Soße zum Hähnchen (A und C, je 250 g), keine Leinsamen, mehr Öl.",
+ "_info": "Reis-Plan (Second Brain: Reis-Plan Beispielwoche). Stand 26.11.2026: kein Öl eingerechnet (Ölspray), Magerquark steckt in Soße/Topping jeder Box (2 Becher pro Session = 7 × ca. 143 g), Mais im Chili. Mengen pro Box in g. Makros rechnet die App aus zutaten.json.",
  "ziele": {
   "kcal_tag": 2000,
   "protein_tag": 165,
@@ -9,7 +9,7 @@
  "rezepte": [
   {
    "id": "A",
-   "name": "Knoblauch-Soja-Hähnchen mit Brokkoli",
+   "name": "Knoblauch-Hähnchen mit Brokkoli und Quark-Soja-Soße",
    "kurz": "Knoblauch-Hähnchen",
    "portionen": 4,
    "zutaten": [
@@ -23,11 +23,7 @@
     ],
     [
      "reis",
-     80
-    ],
-    [
-     "rapsoel",
-     15
+     120
     ],
     [
      "soja",
@@ -38,11 +34,15 @@
      0.75
     ],
     [
+     "magerquark",
+     142.9
+    ],
+    [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Hähnchen scharf anbraten, Knoblauch und Sojasauce dazu, Brokkoli dämpfen und untermischen. Pfeffer, Chili."
+   "hinweis": "Hähnchen mit Ölspray scharf anbraten, Knoblauch und Sojasauce dazu, Brokkoli dämpfen und untermischen. Soße: Quark mit Knoblauch, etwas Sojasauce und Wasser glatt rühren, kalt in die Box oder nach dem Aufwärmen unterheben."
   },
   {
    "id": "B",
@@ -83,19 +83,19 @@
      15
     ],
     [
-     "rapsoel",
-     15
+     "reis",
+     90
     ],
     [
-     "reis",
-     70
+     "magerquark",
+     142.9
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Hack und Zwiebel anbraten, Tomatenmark kurz mitrösten, Paprika, passierte Tomaten, Kidneybohnen und Mais (abgespült), rote Linsen und ca. 250 ml Wasser dazu. Chili, Paprikapulver, Kreuzkümmel, Salz. 20 min köcheln."
+   "hinweis": "Hack und Zwiebel mit Ölspray anbraten, Tomatenmark kurz mitrösten, Paprika, passierte Tomaten, Kidneybohnen und Mais (abgespült), rote Linsen und ca. 250 ml Wasser dazu. Chili, Paprikapulver, Kreuzkümmel, Salz. 20 min köcheln. Quark wie Schmand obendrauf oder nach dem Aufwärmen unterrühren."
   },
   {
    "id": "C",
@@ -121,7 +121,7 @@
     ],
     [
      "erdnussmus",
-     15
+     25
     ],
     [
      "soja",
@@ -132,19 +132,19 @@
      40
     ],
     [
-     "rapsoel",
-     10
+     "reis",
+     70
     ],
     [
-     "reis",
-     55
+     "magerquark",
+     142.9
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "Zwiebel und Hähnchen anbraten, 2 EL Currypulver dazu. Erdnussmus, Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli, Edamame und Erbsen rein, 10 min köcheln."
+   "hinweis": "Zwiebel und Hähnchen mit Ölspray anbraten, 2 EL Currypulver dazu. Erdnussmus, Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli, Edamame und Erbsen rein, 10 min köcheln. Herd aus, kurz abkühlen lassen, dann den Quark unterrühren (macht das Curry cremig, flockt nicht, wenn es nicht mehr kocht)."
   },
   {
    "id": "D",
@@ -177,65 +177,23 @@
      15
     ],
     [
-     "rapsoel",
-     15
-    ],
-    [
      "reis",
-     65
+     80
     ],
     [
      "knoblauch",
      0.67
     ],
     [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "Hack und Zwiebel anbraten, Tomatenmark, Paprikapulver edelsüß und Knoblauch dazu, Paprika, passierte Tomaten und Erbsen rein, 15 min köcheln. Mit dem Reis mischen."
-  },
-  {
-   "id": "Q1",
-   "name": "Quark-Soße zum Hähnchen",
-   "kurz": "Quark-Soße",
-   "portionen": 4,
-   "zutaten": [
-    [
      "magerquark",
-     250
-    ],
-    [
-     "knoblauch",
-     0.5
+     142.9
     ],
     [
      "gewuerze",
      0
     ]
    ],
-   "hinweis": "250 g Magerquark pro Box mit Knoblauch, Salz, Pfeffer, Kräutern und etwas Wasser glatt rühren. Kalt zur warmen Box, nicht mit aufwärmen."
-  },
-  {
-   "id": "Q2",
-   "name": "Quark-Soße zum Hähnchen",
-   "kurz": "Quark-Soße",
-   "portionen": 4,
-   "zutaten": [
-    [
-     "magerquark",
-     250
-    ],
-    [
-     "knoblauch",
-     0.5
-    ],
-    [
-     "gewuerze",
-     0
-    ]
-   ],
-   "hinweis": "250 g Magerquark pro Box mit Knoblauch, Salz, Pfeffer, Kräutern und etwas Wasser glatt rühren. Kalt zur warmen Box, nicht mit aufwärmen."
+   "hinweis": "Hack und Zwiebel mit Ölspray anbraten, Tomatenmark, Paprikapulver edelsüß und Knoblauch dazu, Paprika, passierte Tomaten und Erbsen rein, 15 min köcheln. Mit dem Reis mischen, Knoblauch-Quark als Klecks obendrauf."
   }
  ],
  "sessions": [
@@ -246,18 +204,17 @@
    "deckt": "Mo mittags bis Do mittags",
    "rezepte": [
     "A",
-    "B",
-    "Q1"
+    "B"
    ],
    "minuten": 60,
    "prep": [
-    "Reis 530 g (für Hähnchen und Chili) mit doppelter Menge Wasser aufsetzen.",
-    "Chili: Zwiebel und Hack in 4–5 EL Öl (45 g) anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen und Mais (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.",
-    "Hähnchen (1 kg) würfeln und in 4 EL Öl (60 g) in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.",
+    "Reis 750 g (480 g für Hähnchen, 270 g für Chili) mit doppelter Menge Wasser aufsetzen.",
+    "Chili: Zwiebel und Hack mit Ölspray anbraten, 3 EL Tomatenmark kurz mitrösten. Paprika, passierte Tomaten, Kidneybohnen und Mais (abgespült), 75 g rote Linsen und ca. 250 ml Wasser dazu, würzen, 20 min köcheln.",
+    "Hähnchen (1 kg) würfeln und mit Ölspray in zwei Runden scharf anbraten, 3 Zehen Knoblauch und 60 ml Sojasauce dazu.",
     "Brokkoli (1 kg) dämpfen oder in der Pfanne mitgaren und unter das Hähnchen mischen.",
+    "Quark: 2 Becher (1 kg) mit Knoblauch, Salz und etwas Wasser glatt rühren und in 7 gleiche Teile (je ca. 140 g): 4 als Soße zu den Hähnchen-Boxen, 3 als Topping aufs Chili.",
     "Reis flach ausbreiten und schnell abkühlen lassen.",
-    "Abfüllen: 4 Boxen Hähnchen mit je ca. 240 g gekochtem Reis, 3 Boxen Chili mit je ca. 210 g.",
-    "Quark-Soße: 2 Becher Quark (1 kg) mit Knoblauch, Salz, Kräutern anrühren, in 4 kleine Dosen zu den Hähnchen-Boxen.",
+    "Abfüllen: 4 Boxen Hähnchen mit je ca. 360 g gekochtem Reis, 3 Boxen Chili mit je ca. 270 g. Quark in kleine Dosen oder obendrauf.",
     "Do-Box Hähnchen einfrieren, Mi abends in den Kühlschrank legen. Der Rest kommt in den Kühlschrank."
    ]
   },
@@ -268,17 +225,17 @@
    "deckt": "Do abends bis So abends",
    "rezepte": [
     "C",
-    "D",
-    "Q2"
+    "D"
    ],
    "minuten": 60,
    "prep": [
-    "Reis 415 g (für Curry und Balkan-Pfanne) mit doppelter Menge Wasser aufsetzen.",
-    "Balkan-Pfanne: Zwiebel und Hack in 4–5 EL Öl (45 g) anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.",
-    "Curry: Zwiebel und Hähnchen (1 kg) in 4 EL Öl (40 g) anbraten, 2 EL Currypulver. 60 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.",
+    "Reis 520 g (280 g für Curry, 240 g für Balkan-Pfanne) mit doppelter Menge Wasser aufsetzen.",
+    "Balkan-Pfanne: Zwiebel und Hack mit Ölspray anbraten, 3 EL Tomatenmark, Paprikapulver, 2 Zehen Knoblauch. Paprika, passierte Tomaten und 500 g Erbsen dazu, 15 min köcheln.",
+    "Curry: Zwiebel und Hähnchen (1 kg) mit Ölspray anbraten, 2 EL Currypulver. 100 g Erdnussmus, 60 ml Sojasauce und ca. 200 ml Wasser verrühren, Brokkoli (1 kg), Edamame (400 g) und 500 g Erbsen dazu, 10 min köcheln.",
+    "Herd aus, Curry 2–3 min abkühlen lassen, dann 4 Teile Quark (ca. 570 g) unterrühren.",
+    "Rest-Quark (ca. 430 g) mit Knoblauch und Salz anrühren, in 3 Teilen auf die Balkan-Pfanne.",
     "Reis flach ausbreiten und schnell abkühlen lassen.",
-    "Abfüllen: 4 Boxen Curry mit je ca. 165 g gekochtem Reis, 3 Boxen Balkan-Pfanne mit je ca. 195 g. Eine Curry-Box gleich essen.",
-    "Quark-Soße: 2 Becher Quark (1 kg) anrühren, in 4 kleine Dosen zu den Curry-Boxen.",
+    "Abfüllen: 4 Boxen Curry mit je ca. 210 g gekochtem Reis, 3 Boxen Balkan-Pfanne mit je ca. 240 g. Eine Curry-Box gleich essen.",
     "So-Boxen (1 Curry, 1 Balkan-Pfanne) einfrieren, Sa abends in den Kühlschrank legen."
    ]
   }
@@ -326,6 +283,6 @@
   "Gefrorene Box immer am Vorabend in den Kühlschrank legen.",
   "Kalzium ist knapp: täglich ca. 1 l kalziumreiches Mineralwasser (ab 250 mg/l) trinken.",
   "Packung im Markt anders groß? Packung durch die Anzahl Boxen teilen.",
-  "Öl wirklich abmessen statt Spray: das Fett im Plan (ca. 60 g/Tag) kommt größtenteils daher."
+  "Öl ist nicht eingerechnet, nur Ölspray. Fett liegt dadurch bei ca. 30–50 g pro Tag."
  ]
 }
