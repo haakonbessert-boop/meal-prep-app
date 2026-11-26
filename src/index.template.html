@@ -179,7 +179,7 @@ function makros(r){
   return { kcal: Math.round(m.kcal), protein: Math.round(m.protein), fett: Math.round(m.fett), kh: Math.round(m.kh) };
 }
 const M = Object.fromEntries(REZ.rezepte.map(r => [r.id, makros(r)]));
-const tagSum = t => ["mittag", "abend", "quark"].reduce((a, x) => { const m = M[t[x]]; for (const f in a) a[f] += m[f]; return a; }, { kcal: 0, protein: 0, fett: 0, kh: 0 });
+const tagSum = t => [t.mittag, t.abend].reduce((a, id) => { const m = M[id]; for (const f in a) a[f] += m[f]; return a; }, { kcal: 0, protein: 0, fett: 0, kh: 0 });
 
 function einkauf(sid){
   const tot = {};
@@ -194,7 +194,7 @@ function einkauf(sid){
     summe += n * (z.preis || 0);
     const einh = z.packung.einheit;
     const qty = einh === "Stück" ? `${n} Stück` : n === 1 ? einh : `${n} × ${einh}`;
-    const fuer = REZ.rezepte.filter(r => sessById[sid].rezepte.includes(r.id) && r.zutaten.some(([kk]) => kk === k)).map(r => r.kurz.startsWith("Quark") ? "Quark" : r.kurz).join(", ");
+    const fuer = REZ.rezepte.filter(r => sessById[sid].rezepte.includes(r.id) && r.zutaten.some(([kk]) => kk === k)).map(r => r.kurz).join(", ");
     (out[z.abteilung] ||= []).push({ k, name: z.name, qty, need: `für ${fuer}`, preis: z.preis ? n * z.preis : 0 });
   }
   return { out, vorrat: [...new Set(vorrat)], summe };
@@ -219,18 +219,16 @@ function viewWoche(){
   const woche = sums.reduce((a, s) => a + s.kcal, 0), pAvg = Math.round(sums.reduce((a, s) => a + s.protein, 0) / 7);
   const st = (v, goal, isP) => isP
     ? (v >= goal ? `<span class="st">Ziel erreicht</span>` : `<span class="st warn">${goal - v} g fehlen</span>`)
-    : (Math.abs(v - goal) <= 50 ? `<span class="st">passt</span>` : v < goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
+    : (Math.abs(v - goal) <= 75 ? `<span class="st">passt</span>` : v < goal ? `<span class="st">${fmt(goal - v)} übrig</span>` : `<span class="st warn">${fmt(v - goal)} drüber</span>`);
   const t = REZ.tage.find(x => x.tag === heute);
   return `
     <div><h1 class="hello">Heute: <em>${byId[t.mittag].kurz}</em> und <em>${byId[t.abend].kurz}</em>.</h1>
-    <p class="lead">15 Uhr und ca. 18:30 je eine Box, abends Quark dazu. Montag und Donnerstag kaufst du ein und kochst.</p></div>
+    <p class="lead">15 Uhr und ca. 18:30 je eine Box, der Quark steckt in Soße oder Topping. Montag und Donnerstag kaufst du ein und kochst.</p></div>
     <section class="panel">
       ${mealRow(byId.A, "Montag gekocht · Mo–Do, 15 Uhr")}
       ${mealRow(byId.B, "Montag gekocht · Mo–Mi, abends")}
       ${mealRow(byId.C, "Donnerstag gekocht · Do–So, abends")}
       ${mealRow(byId.D, "Donnerstag gekocht · Fr–So, 15 Uhr")}
-      ${mealRow(byId.Q1, "Mo–Mi, nach dem Abendessen")}
-      ${mealRow(byId.Q2, "Do–So, nach dem Abendessen")}
     </section>
     <section>
       <h3 class="h-sec">Tage gegen dein Ziel</h3>
